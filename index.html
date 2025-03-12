@@ -160,9 +160,87 @@
             box-shadow: 0 8px 24px rgba(43, 126, 252, 0.3);
         }
 
+        /* 模态框样式 */
+        .modal-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-container {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 24px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .download-link {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .download-link input {
+            flex: 1;
+            background: var(--background);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .copy-btn:hover {
+            opacity: 0.9;
+        }
+
         @media (max-width: 768px) {
             .hero-title { font-size: 2.5rem; }
             .feature-grid { padding: 80px 5%; }
+            .modal-container { padding: 16px; }
+            .download-link { flex-direction: column; }
+            .copy-btn { width: 100%; }
         }
     </style>
 </head>
@@ -182,7 +260,7 @@
                     无广告干扰 · 亿级曲库 · 智能跨端同步<br>
                     使用CoCo编辑器打造的精工之作
                 </p>
-                <button class="download-btn" onclick="window.location.href='https://creation.codemao.cn/434/E2CD40671410417893CDA6FBDDA75CE5/QR%E9%9F%B3%E4%B9%90.apk'">
+                <button class="download-btn" id="downloadBtn">
                     立即体验
                 </button>
             </div>
@@ -238,5 +316,59 @@
         <p>© 2025 QR音乐团队 · 官方QQ群：677063599</p>
         <p style="margin-top: 16px;">在喧嚣世界中，听见内心的声音</p>
     </footer>
+
+    <!-- 下载提示模态框 -->
+    <div class="modal-mask" id="downloadModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>提示</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p>已尝试触发下载。若下载失败，请复制下载链接：</p>
+                <div class="download-link">
+                    <input type="text" id="downloadUrl" readonly>
+                    <button class="copy-btn" onclick="copyLink()">复制链接</button>
+                </div>
+                <p>若下载失败，请到官方QQ群寻求帮助。（官方QQ群号：677063599）</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const downloadUrl = 'https://creation.codemao.cn/434/E2CD40671410417893CDA6FBDDA75CE5/QR%E9%9F%B3%E4%B9%90.apk';
+        const downloadBtn = document.getElementById('downloadBtn');
+        const modal = document.getElementById('downloadModal');
+
+        // 显示模态框并触发下载
+        function showModal() {
+            document.getElementById('downloadUrl').value = downloadUrl;
+            modal.style.display = 'flex';
+            window.location.href = downloadUrl;
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // 复制链接
+        function copyLink() {
+            navigator.clipboard.writeText(downloadUrl).then(() => {
+                alert('链接已复制到剪贴板');
+            }).catch(() => {
+                const input = document.getElementById('downloadUrl');
+                input.select();
+                document.execCommand('copy');
+                alert('链接已复制');
+            });
+        }
+
+        // 事件监听
+        downloadBtn.addEventListener('click', showModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
 </body>
 </html>
