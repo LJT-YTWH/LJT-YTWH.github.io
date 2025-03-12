@@ -153,6 +153,13 @@
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 100;
+            min-width: 160px;
+            min-height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .download-btn:hover {
@@ -242,6 +249,66 @@
             .download-link { flex-direction: column; }
             .copy-btn { width: 100%; }
         }
+
+        /* 新增移动端优化 */
+        @media (max-width: 480px) {
+            .download-btn {
+                padding: 16px 32px;
+                width: 100%;
+                max-width: 280px;
+            }
+            .hero-content {
+                padding-bottom: 80px;
+                overflow: visible;
+            }
+            .download-btn:active {
+                transform: scale(0.95) !important;
+                transition: all 0.1s ease;
+            }
+        }
+
+        /* 超小屏幕适配 */
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+            .download-btn {
+                padding: 18px 28px;
+                font-size: 1.2rem;
+                max-width: none;
+                width: 100%;
+                border-radius: 32px;
+            }
+            .hero-content {
+                transform: translateY(-10%);
+                position: relative;
+                z-index: 500;
+            }
+        }
+
+        @media (max-height: 600px) and (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 88px 10% 40px;
+            }
+        }
+
+        /* 超矮屏幕适配 */
+        @media (max-height: 500px) {
+            .hero {
+                padding-top: 88px !important;
+                align-items: flex-start;
+            }
+            .download-btn {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -267,6 +334,7 @@
         </section>
 
         <section class="feature-grid">
+            <!-- 从第二个文件整合的功能卡片 -->
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="material-icons">library_music</i>
@@ -330,7 +398,7 @@
                     <input type="text" id="downloadUrl" readonly>
                     <button class="copy-btn" onclick="copyLink()">复制链接</button>
                 </div>
-                <p>若下载失败，请到官方QQ群寻求帮助。（官方QQ群号：677063599）</p>
+                <p>若通过下载链接还是下载失败，请到官方QQ群寻求帮助（官方QQ群号：677063599）。</p>
             </div>
         </div>
     </div>
@@ -340,19 +408,38 @@
         const downloadBtn = document.getElementById('downloadBtn');
         const modal = document.getElementById('downloadModal');
 
-        // 显示模态框并触发下载
+        // 增强型点击检测
+        let lastTap = 0;
+        const tapDelay = 300;
+
+        function handleInteraction(e) {
+            const now = Date.now();
+            if (now - lastTap < tapDelay) return;
+            lastTap = now;
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            try {
+                navigator.vibrate?.(30);
+            } catch {}
+
+            this.classList.add('active');
+            setTimeout(() => this.classList.remove('active'), 100);
+
+            showModal();
+        }
+
         function showModal() {
             document.getElementById('downloadUrl').value = downloadUrl;
             modal.style.display = 'flex';
             window.location.href = downloadUrl;
         }
 
-        // 关闭模态框
         function closeModal() {
             modal.style.display = 'none';
         }
 
-        // 复制链接
         function copyLink() {
             navigator.clipboard.writeText(downloadUrl).then(() => {
                 alert('链接已复制到剪贴板');
@@ -364,11 +451,33 @@
             });
         }
 
-        // 事件监听
-        downloadBtn.addEventListener('click', showModal);
+        // 新型事件绑定
+        downloadBtn.addEventListener('pointerdown', handleInteraction, {
+            passive: false,
+            capture: true
+        });
+
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
+
+        // 视口动态调整优化
+        function checkViewport() {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            const isMobile = window.innerWidth <= 360 || window.innerHeight <= 500;
+            
+            viewport.content = isMobile 
+                ? "width=device-width, initial-scale=1.0, minimum-scale=1.0" 
+                : "width=device-width, initial-scale=1.0";
+        }
+
+        // 添加防抖处理
+        window.addEventListener('resize', () => {
+            clearTimeout(window.resizeTimer);
+            window.resizeTimer = setTimeout(checkViewport, 200);
+        });
+
+        checkViewport();
     </script>
 </body>
 </html>
