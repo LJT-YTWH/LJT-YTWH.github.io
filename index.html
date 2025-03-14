@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
-            --primary: #2B7EFC;
+            --primary: #1772E5;
             --surface: #121212;
             --background: #0A0A0A;
             --text-primary: rgba(255, 255, 255, 0.95);
@@ -27,6 +27,29 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* 动态星空背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 200vw;
+            height: 200vh;
+            background: 
+                radial-gradient(600px at 70% 30%, rgba(43, 126, 252, 0.15) 0%, transparent 100%),
+                radial-gradient(600px at 30% 70%, rgba(43, 126, 252, 0.1) 0%, transparent 100%),
+                linear-gradient(45deg, 
+                    rgba(8, 8, 8, 0.95) 20%,
+                    rgba(12, 36, 64, 0.85) 80%);
+            animation: bgFlow 60s linear infinite;
+            filter: contrast(140%) brightness(120%);
+            z-index: -1;
+        }
+
+        @keyframes bgFlow {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0, 0); }
+        }
+
         body {
             margin: 0;
             font-family: 'Inter', system-ui, sans-serif;
@@ -35,13 +58,17 @@
             transition: var(--transition);
         }
 
-        /* 动态顶栏 */
+        /* 顶栏样式 */
         .app-bar {
             position: fixed;
             top: 0;
             width: 100%;
             height: 88px;
-            background: rgba(18, 18, 18, 0.8);
+            background: linear-gradient(
+                to right,
+                rgba(18, 18, 18, 0.9) 0%,
+                rgba(18, 18, 18, 0.6) 100%
+            );
             backdrop-filter: var(--glass-blur);
             display: flex;
             align-items: center;
@@ -64,7 +91,7 @@
             overflow: hidden;
         }
 
-        /* 英雄区域 */
+        /* 主内容区域 */
         .hero {
             height: 100vh;
             display: flex;
@@ -100,28 +127,57 @@
             font-size: 4rem;
             margin: 0 0 24px;
             line-height: 1.1;
+            background: linear-gradient(45deg, #fff 30%, #1772E5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        /* 功能卡片 */
+        /* 增强功能卡片 */
         .feature-grid {
             display: grid;
             gap: 32px;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             padding: 120px 10%;
+            perspective: 1000px;
         }
 
         .feature-card {
             padding: 32px;
             border-radius: 24px;
-            background: var(--surface);
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(
+                145deg,
+                rgba(28, 28, 28, 0.6) 0%,
+                rgba(18, 18, 18, 0.8) 100%
+            );
+            backdrop-filter: var(--glass-blur);
+            transition: 
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease,
+                border-color 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(40px);
+            cursor: pointer;
+        }
+
+        .feature-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--elevation-1);
+            transform: 
+                translateY(-15px)
+                scale(1.06)
+                rotateZ(1deg);
+            box-shadow: 
+                0 32px 64px rgba(0, 0, 0, 0.5),
+                0 0 64px rgba(43, 126, 252, 0.25),
+                inset 0 0 24px rgba(255,255,255,0.1);
+            border-color: rgba(43, 126, 252, 0.4);
+            z-index: 100;
         }
 
         .feature-icon {
@@ -133,6 +189,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
+            transition: transform 0.4s ease;
         }
 
         .feature-icon .material-icons {
@@ -160,19 +217,39 @@
             font-size: 1.1rem;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 100;
-            min-width: 160px;
-            min-height: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 24px rgba(43, 126, 252, 0.3);
         }
 
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(43, 126, 252, 0.3);
+        /* 页脚流光效果 */
+        footer {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            padding: 80px 10% 120px;
+            color: var(--text-secondary);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent 25%,
+                rgba(43, 126, 252, 0.4) 50%,
+                transparent 75%
+            );
+            transform: translateX(-50%);
+            animation: lineFlow 3s linear infinite;
+        }
+
+        @keyframes lineFlow {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
         }
 
         /* 模态框样式 */
@@ -190,13 +267,20 @@
         }
 
         .modal-container {
-            background: var(--surface);
+            background: linear-gradient(
+                135deg,
+                rgba(28, 28, 28, 0.9) 0%,
+                rgba(18, 18, 18, 0.95) 100%
+            );
             border-radius: 16px;
             padding: 24px;
             width: 90%;
             max-width: 500px;
             position: relative;
             animation: modalIn 0.3s ease;
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 0 48px rgba(43, 126, 252, 0.2);
+            border: 1px solid rgba(43, 126, 252, 0.1);
         }
 
         @keyframes modalIn {
@@ -246,80 +330,33 @@
             transition: opacity 0.2s;
         }
 
-        .copy-btn:hover {
-            opacity: 0.9;
-        }
-
+        /* 响应式设计 */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.5rem; }
             .feature-grid { padding: 80px 5%; }
             .modal-container { padding: 16px; }
-            .download-link { flex-direction: column; }
-            .copy-btn { width: 100%; }
         }
 
-        /* 新增移动端优化 */
         @media (max-width: 480px) {
             .download-btn {
                 padding: 16px 32px;
                 width: 100%;
                 max-width: 280px;
             }
-            .hero-content {
-                padding-bottom: 80px;
-                overflow: visible;
-            }
-            .download-btn:active {
-                transform: scale(0.95) !important;
-                transition: all 0.1s ease;
-            }
         }
 
-        /* 超小屏幕适配 */
         @media (max-width: 360px) {
-            .hero-title {
-                font-size: 2rem !important;
-            }
+            .hero-title { font-size: 2rem !important; }
             .download-btn {
                 padding: 18px 28px;
                 font-size: 1.2rem;
-                max-width: none;
                 width: 100%;
-                border-radius: 32px;
-            }
-            .hero-content {
-                transform: translateY(-10%);
-                position: relative;
-                z-index: 500;
-            }
-        }
-
-        @media (max-height: 600px) and (max-width: 768px) {
-            .hero {
-                height: auto;
-                min-height: 100vh;
-                padding: 88px 10% 40px;
-            }
-        }
-
-        /* 超矮屏幕适配 */
-        @media (max-height: 500px) {
-            .hero {
-                padding-top: 88px !important;
-                align-items: flex-start;
-            }
-            .download-btn {
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.3);
             }
         }
     </style>
     <meta name="msvalidate.01" content="933C0CA2F64E9B7A5C5636BDCEF2A097" />
 </head>
+
 <body>
     <header class="app-bar">
         <div class="brand-logo">
@@ -338,60 +375,45 @@
                     <br>
                     官方QQ群号：677063599
                 </p>
-                <button class="download-btn" id="downloadBtn">
-                    立即体验
-                </button>
+                <button class="download-btn" id="downloadBtn">立即体验</button>
             </div>
         </section>
 
         <section class="feature-grid">
-            <!-- 从第二个文件整合的功能卡片 -->
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="material-icons">library_music</i>
-                </div>
+                <div class="feature-icon"><i class="material-icons">library_music</i></div>
                 <h3 class="feature-title">海量曲库</h3>
                 <p class="feature-desc">拥有亿级曲库，覆盖全网大部分音乐</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="material-icons">sync_alt</i>
-                </div>
+                <div class="feature-icon"><i class="material-icons">sync_alt</i></div>
                 <h3 class="feature-title">无缝同步</h3>
                 <p class="feature-desc">跨设备歌单云同步，个人歌单永不丢失</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="material-icons">palette</i>
-                </div>
+                <div class="feature-icon"><i class="material-icons">palette</i></div>
                 <h3 class="feature-title">极简美学</h3>
                 <p class="feature-desc">去除冗余功能以及广告，让您无需过多操作，便可享受到极致的音乐体验</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="material-icons">import_contacts</i>
-                </div>
+                <div class="feature-icon"><i class="material-icons">import_contacts</i></div>
                 <h3 class="feature-title">歌单迁移</h3>
                 <p class="feature-desc">一键导入网易云音乐歌单，完整保留您的收藏</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="material-icons">graphic_eq</i>
-                </div>
+                <div class="feature-icon"><i class="material-icons">graphic_eq</i></div>
                 <h3 class="feature-title">自由定制</h3>
                 <p class="feature-desc">播放器拥有超高的可自定义能力，可按照自己的喜好对播放进行调整</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="material-icons">devices</i>
-                </div>
+                <div class="feature-icon"><i class="material-icons">devices</i></div>
                 <h3 class="feature-title">全端兼容</h3>
                 <p class="feature-desc">移动端（目前仅有Android版）/桌面端（开发中）/网页端（开发中）无缝衔接体验</p>
             </div>
         </section>
     </main>
 
-    <footer style="text-align: center; padding: 80px 10% 120px; color: var(--text-secondary)">
+    <footer>
         <p>© 2025 QR音乐团队 · 官方QQ群：677063599</p>
         <p style="margin-top: 16px;">在喧嚣世界中，听见内心的声音</p>
     </footer>
@@ -415,11 +437,11 @@
     </div>
 
     <script>
+        // 基础交互逻辑
         const downloadUrl = 'https://creation.codemao.cn/434/E2CD40671410417893CDA6FBDDA75CE5/QR%E9%9F%B3%E4%B9%90.apk';
         const downloadBtn = document.getElementById('downloadBtn');
         const modal = document.getElementById('downloadModal');
 
-        // 增强型点击检测
         let lastTap = 0;
         const tapDelay = 300;
 
@@ -431,13 +453,9 @@
             e.preventDefault();
             e.stopPropagation();
 
-            try {
-                navigator.vibrate?.(30);
-            } catch {}
-
+            try { navigator.vibrate?.(30); } catch {}
             this.classList.add('active');
             setTimeout(() => this.classList.remove('active'), 100);
-
             showModal();
         }
 
@@ -447,9 +465,7 @@
             window.location.href = downloadUrl;
         }
 
-        function closeModal() {
-            modal.style.display = 'none';
-        }
+        function closeModal() { modal.style.display = 'none'; }
 
         function copyLink() {
             navigator.clipboard.writeText(downloadUrl).then(() => {
@@ -462,33 +478,56 @@
             });
         }
 
-        // 新型事件绑定
-        downloadBtn.addEventListener('pointerdown', handleInteraction, {
-            passive: false,
-            capture: true
-        });
+        // 事件监听
+        downloadBtn.addEventListener('pointerdown', handleInteraction, { passive: false, capture: true });
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // 视口动态调整优化
+        // 视口适配
         function checkViewport() {
             const viewport = document.querySelector('meta[name="viewport"]');
             const isMobile = window.innerWidth <= 360 || window.innerHeight <= 500;
-            
             viewport.content = isMobile 
                 ? "width=device-width, initial-scale=1.0, minimum-scale=1.0" 
                 : "width=device-width, initial-scale=1.0";
         }
-
-        // 添加防抖处理
         window.addEventListener('resize', () => {
             clearTimeout(window.resizeTimer);
             window.resizeTimer = setTimeout(checkViewport, 200);
         });
-
         checkViewport();
+
+        // 滚动动画
+        function animateOnScroll() {
+            document.querySelectorAll('.feature-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if(rect.top < window.innerHeight * 0.8) {
+                    card.classList.add('in-view');
+                }
+            });
+        }
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll();
+
+        // 卡片交互增强
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                
+                this.style.transform = `
+                    perspective(1000px)
+                    rotateX(${(y - 0.5) * 4}deg)
+                    rotateY(${(x - 0.5) * 4}deg)
+                    translateY(-15px)
+                    scale(1.06)
+                `;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
     </script>
 </body>
 </html>
