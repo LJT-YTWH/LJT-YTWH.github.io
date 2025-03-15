@@ -479,8 +479,8 @@
             });
         }
 
-        // 事件监听
-        downloadBtn.addEventListener('pointerdown', handleInteraction, { passive: false, capture: true });
+        // 事件监听（唯一修改点）
+        downloadBtn.addEventListener('click', handleInteraction, { passive: false, capture: true });
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
         // 视口适配
