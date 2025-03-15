@@ -112,12 +112,15 @@
             right: -200px;
             top: 50%;
             transform: translateY(-50%);
+            z-index: 0;  /* 新增层级控制 */
         }
 
         .hero-content {
             max-width: 800px;
             opacity: 0;
             animation: textFlow 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            position: relative;  /* 新增定位上下文 */
+            z-index: 1;         /* 设置层级高于.hero::after */
         }
 
         @keyframes textFlow {
@@ -479,7 +482,7 @@
             });
         }
 
-        // 事件监听（唯一修改点）
+        // 事件监听
         downloadBtn.addEventListener('click', handleInteraction, { passive: false, capture: true });
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
