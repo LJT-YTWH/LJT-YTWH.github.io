@@ -18,31 +18,29 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         :root {
-            --primary: #2B7EFC;
-            --surface: #121212;
-            --background: #0A0A0A;
-            --text-primary: rgba(255, 255, 255, 0.95);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --accent: #1D2C43;
+            --primary: #70C2FF;
+            --secondary: #89E3FF;
+            --surface: #F8FDFF;
+            --background: #F8FDFF;
+            --text-primary: #2D4059;
+            --text-secondary: #6B7B8F;
+            --accent: rgba(112, 194, 255, 0.15);
             --glass-blur: blur(24px);
-            --elevation-1: 0 12px 40px rgba(0, 0, 0, 0.3);
+            --elevation-1: 0 12px 40px rgba(0, 0, 0, 0.1);
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --gradient: linear-gradient(135deg, #70C2FF 0%, #89E3FF 100%);
         }
 
-        /* 动态星空背景 */
+        /* 动态星空背景-改为第二者渐变色 */
         body::before {
             content: '';
             position: fixed;
             width: 200vw;
             height: 200vh;
             background: 
-                radial-gradient(600px at 70% 30%, rgba(43, 126, 252, 0.15) 0%, transparent 100%),
-                radial-gradient(600px at 30% 70%, rgba(43, 126, 252, 0.1) 0%, transparent 100%),
-                linear-gradient(45deg, 
-                    rgba(8, 8, 8, 0.95) 20%,
-                    rgba(12, 36, 64, 0.85) 80%);
+                radial-gradient(circle at 70% 10%, rgba(112, 194, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 30% 90%, rgba(137, 227, 255, 0.1) 0%, transparent 55%);
             animation: bgFlow 60s linear infinite;
-            filter: contrast(140%) brightness(120%);
             z-index: -1;
         }
 
@@ -66,17 +64,13 @@
             top: 0;
             width: 100%;
             height: 88px;
-            background: linear-gradient(
-                to right,
-                rgba(18, 18, 18, 0.9) 0%,
-                rgba(18, 18, 18, 0.6) 100%
-            );
-            backdrop-filter: var(--glass-blur);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
             padding: 0 10%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(112, 194, 255, 0.15);
         }
 
         .brand-logo {
@@ -85,12 +79,12 @@
             gap: 12px;
             font-weight: 600;
             font-size: 1.8rem;
+            color: var(--primary);
         }
         .brand-logo img {
             height: 36px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             border-radius: 8px;
-            overflow: hidden;
         }
 
         /* 主内容区域 */
@@ -102,25 +96,13 @@
             position: relative;
             overflow: hidden;
         }
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 60%);
-            opacity: 0.1;
-            right: -200px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 0;  /* 新增层级控制 */
-        }
 
         .hero-content {
             max-width: 800px;
             opacity: 0;
             animation: textFlow 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            position: relative;  /* 新增定位上下文 */
-            z-index: 1;         /* 设置层级高于.hero::after */
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes textFlow {
@@ -132,13 +114,13 @@
             font-size: 4rem;
             margin: 0 0 24px;
             line-height: 1.1;
-            background: linear-gradient(45deg, #fff 30%, #7fb1fd 100%);
+            background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        /* 增强功能卡片 */
+        /* 功能卡片保留第一者交互 */
         .feature-grid {
             display: grid;
             gap: 32px;
@@ -150,18 +132,13 @@
         .feature-card {
             padding: 32px;
             border-radius: 24px;
-            background: linear-gradient(
-                145deg,
-                rgba(28, 28, 28, 0.6) 0%,
-                rgba(18, 18, 18, 0.8) 100%
-            );
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: var(--glass-blur);
             transition: 
                 transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.4s ease,
-                border-color 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                box-shadow 0.4s ease;
+            border: 1px solid rgba(112, 194, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(112, 194, 255, 0.1);
             opacity: 0;
             transform: translateY(40px);
             cursor: pointer;
@@ -178,55 +155,40 @@
                 scale(1.06)
                 rotateZ(1deg);
             box-shadow: 
-                0 32px 64px rgba(0, 0, 0, 0.5),
-                0 0 64px rgba(43, 126, 252, 0.25),
-                inset 0 0 24px rgba(255,255,255,0.1);
-            border-color: rgba(43, 126, 252, 0.4);
-            z-index: 100;
+                0 32px 64px rgba(112, 194, 255, 0.2),
+                0 0 64px rgba(112, 194, 255, 0.15);
         }
 
         .feature-icon {
             width: 56px;
             height: 56px;
-            background: var(--accent);
+            background: var(--gradient);
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
-            transition: transform 0.4s ease;
         }
 
         .feature-icon .material-icons {
             font-size: 32px;
-            color: var(--primary);
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
-            margin: 0 0 16px;
-        }
-
-        .feature-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
+            color: white;
         }
 
         /* 下载按钮 */
         .download-btn {
             padding: 16px 40px;
             border-radius: 28px;
-            background: var(--primary);
+            background: var(--gradient);
             color: white;
             font-size: 1.1rem;
             border: none;
             cursor: pointer;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 24px rgba(43, 126, 252, 0.3);
+            box-shadow: 0 4px 24px rgba(112, 194, 255, 0.3);
         }
 
-        /* 页脚流光效果 */
+        /* 页脚分割线改为第二者样式 */
         footer {
             position: relative;
             overflow: hidden;
@@ -240,123 +202,48 @@
             position: absolute;
             top: 0;
             left: 50%;
-            width: 60%;
+            width: 40%;  /* 原60%改为40% */
             height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent 25%,
-                rgba(43, 126, 252, 0.4) 50%,
-                transparent 75%
-            );
-            transform: translateX(-50%);
-            animation: lineFlow 3s linear infinite;
+            background: linear-gradient(90deg, 
+            transparent 0%,
+            var(--primary) 30%,
+            var(--secondary) 70%,
+            transparent 100%
+        );
+        transform: translateX(-50%);  /* 保持居中定位 */
+        animation: lineFlow 3s linear infinite;
         }
 
-        @keyframes lineFlow {
-            0% { background-position: -100% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* 模态框样式 */
+        /* 模态框使用第二者样式 */
         .modal-mask {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.98);
             display: none;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(20px);
             z-index: 2000;
         }
 
         .modal-container {
-            background: linear-gradient(
-                135deg,
-                rgba(28, 28, 28, 0.9) 0%,
-                rgba(18, 18, 18, 0.95) 100%
-            );
-            border-radius: 16px;
-            padding: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 40px;
             width: 90%;
             max-width: 500px;
-            position: relative;
-            animation: modalIn 0.3s ease;
-            backdrop-filter: var(--glass-blur);
-            box-shadow: 0 0 48px rgba(43, 126, 252, 0.2);
-            border: 1px solid rgba(43, 126, 252, 0.1);
+            box-shadow: 0 24px 64px rgba(112, 194, 255, 0.15);
+            border: 1px solid rgba(112, 194, 255, 0.25);
+            animation: modalIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        @keyframes modalIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 24px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .download-link {
-            display: flex;
-            gap: 10px;
-            margin: 16px 0;
-        }
-
-        .download-link input {
-            flex: 1;
-            background: var(--background);
-            border: 1px solid var(--accent);
-            color: var(--text-primary);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .copy-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.5rem; }
             .feature-grid { padding: 80px 5%; }
-            .modal-container { padding: 16px; }
-        }
-
-        @media (max-width: 480px) {
-            .download-btn {
-                padding: 16px 32px;
-                width: 100%;
-                max-width: 280px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .hero-title { font-size: 2rem !important; }
-            .download-btn {
-                padding: 18px 28px;
-                font-size: 1.2rem;
-                width: 100%;
-            }
+            .modal-container { padding: 24px; }
         }
     </style>
 </head>
@@ -427,7 +314,6 @@
         <div class="modal-container">
             <div class="modal-header">
                 <h3>提示</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-content">
                 <p>已尝试触发下载。若下载失败，请复制下载链接：</p>
@@ -473,7 +359,7 @@
 
         function copyLink() {
             navigator.clipboard.writeText(downloadUrl).then(() => {
-                alert('链接已复制到剪贴板');
+                alert('链接已复制到剪贴板，请刷新该网页');
             }).catch(() => {
                 const input = document.getElementById('downloadUrl');
                 input.select();
