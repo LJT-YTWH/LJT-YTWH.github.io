@@ -487,12 +487,12 @@
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
         // 视口适配
-        函数 checkViewport() {
+        function checkViewport() {
             const viewport = document.querySelector('meta[name="viewport"]');
             const isMobile = window.innerWidth <= 360 || window.innerHeight <= 500;
-            viewport.内容 = isMobile 
+            viewport.content = isMobile 
                 ? "width=device-width, initial-scale=1.0, minimum-scale=1.0" 
-                : 宽度=设备宽度，初始缩放比例=1.0;
+                : "width=device-width, initial-scale=1.0";
         }
         window.addEventListener('resize', () => {
             clearTimeout(window.resizeTimer);
@@ -501,7 +501,7 @@
         checkViewport();
 
         // 滚动动画
-        函数 animateOnScroll() {
+        function animateOnScroll() {
             document.querySelectorAll('.feature-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
                 if(rect.top < window.innerHeight * 0.8) {
@@ -514,7 +514,7 @@
 
         // 卡片交互增强
         document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mousemove', 函数(e) {
+            card.addEventListener('mousemove', function(e) {
                 const rect = this.getBoundingClientRect();
                 const x = (e.clientX - rect.left) / rect.width;
                 const y = (e.clientY - rect.top) / rect.height;
@@ -528,10 +528,10 @@
                 `;
             });
 
-            card.addEventListener('mouseleave', 函数() {
+            card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
-> < /脚本
+    </script>
 </body>
-    </html>
+</html>
