@@ -3,53 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Music-QR音乐官网</title>
+    <title>QR Music - QR音乐官网</title>
     <meta name="description" content="QR音乐 - 极简美学重构音乐体验。无广告干扰的免费亿级曲库音乐平台，支持智能跨端同步和歌单迁移，提供Android客户端下载。加入官方QQ群677063599获取支持。">
-    <meta name="msvalidate.01" content="933C0CA2F64E9B7A5C5636BDCEF2A097" />
-    <link rel="icon" href="https://static.codemao.cn/pickduck/SJppJ8ankl.png?hash=FlfBJzWeO3eN3Tfwahxm21-wejSU">
     <!-- Clarity tracking code for https://ljt-ytwh-github-io.pages.dev/ -->
     <script>
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qoprpi3c3i");
-    </script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "qoprpi3c3i");
+        </script>
+    <link rel="icon" href="https://static.codemao.cn/pickduck/SJppJ8ankl.png?hash=FlfBJzWeO3eN3Tfwahxm21-wejSU">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2B7EFC;
+            --primary-light: rgba(43, 126, 252, 0.1);
+            --primary-dark: #1a5dc8;
             --surface: #121212;
+            --surface-light: rgba(30, 30, 30, 0.9);
             --background: #0A0A0A;
             --text-primary: rgba(255, 255, 255, 0.95);
             --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-tertiary: rgba(255, 255, 255, 0.5);
             --accent: #1D2C43;
             --glass-blur: blur(24px);
             --elevation-1: 0 12px 40px rgba(0, 0, 0, 0.3);
+            --elevation-2: 0 24px 64px rgba(0, 0, 0, 0.4);
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: all 0.3s ease;
         }
 
-        /* 动态星空背景 */
-        body::before {
-            content: '';
-            position: fixed;
-            width: 200vw;
-            height: 200vh;
-            background: 
-                radial-gradient(600px at 70% 30%, rgba(43, 126, 252, 0.15) 0%, transparent 100%),
-                radial-gradient(600px at 30% 70%, rgba(43, 126, 252, 0.1) 0%, transparent 100%),
-                linear-gradient(45deg, 
-                    rgba(8, 8, 8, 0.95) 20%,
-                    rgba(12, 36, 64, 0.85) 80%);
-            animation: bgFlow 60s linear infinite;
-            filter: contrast(140%) brightness(120%);
-            z-index: -1;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        @keyframes bgFlow {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(-50%, -50%); }
-            100% { transform: translate(0, 0); }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
@@ -58,6 +52,59 @@
             background: var(--background);
             color: var(--text-primary);
             transition: var(--transition);
+            line-height: 1.6;
+            overflow-x: hidden;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 动态星空背景 */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .bg-particles {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(800px at 70% 30%, rgba(43, 126, 252, 0.15) 0%, transparent 100%),
+                radial-gradient(800px at 30% 70%, rgba(43, 126, 252, 0.1) 0%, transparent 100%),
+                linear-gradient(45deg, 
+                    rgba(8, 8, 8, 0.95) 20%,
+                    rgba(12, 36, 64, 0.85) 80%);
+            animation: bgFlow 120s linear infinite;
+            filter: contrast(140%) brightness(120%);
+        }
+
+        @keyframes bgFlow {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: float linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-100vh);
+            }
         }
 
         /* 顶栏样式 */
@@ -65,18 +112,26 @@
             position: fixed;
             top: 0;
             width: 100%;
-            height: 88px;
+            height: 80px;
             background: linear-gradient(
-                to right,
-                rgba(18, 18, 18, 0.9) 0%,
-                rgba(18, 18, 18, 0.6) 100%
+                to bottom,
+                rgba(18, 18, 18, 0.98) 0%,
+                rgba(18, 18, 18, 0.85) 100%
             );
             backdrop-filter: var(--glass-blur);
             display: flex;
             align-items: center;
+            justify-content: space-between;
             padding: 0 10%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: var(--transition-fast);
+        }
+
+        .app-bar.scrolled {
+            height: 70px;
+            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .brand-logo {
@@ -84,43 +139,96 @@
             align-items: center;
             gap: 12px;
             font-weight: 600;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
         }
+
+        .brand-logo:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
         .brand-logo img {
-            height: 36px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            height: 32px;
+            filter: drop-shadow(0 2px 8px rgba(43, 126, 252, 0.3));
             border-radius: 8px;
-            overflow: hidden;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition-fast);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         /* 主内容区域 */
         .hero {
             height: 100vh;
+            min-height: 700px;
             display: flex;
             align-items: center;
             padding: 0 10%;
             position: relative;
             overflow: hidden;
+            padding-top: 80px;
         }
+
         .hero::after {
             content: '';
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 60%);
-            opacity: 0.1;
-            right: -200px;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.08;
+            right: -300px;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 0;  /* 新增层级控制 */
+            z-index: 0;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.08; transform: translateY(-50%) scale(1); }
+            50% { opacity: 0.15; transform: translateY(-50%) scale(1.05); }
         }
 
         .hero-content {
             max-width: 800px;
             opacity: 0;
-            animation: textFlow 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            position: relative;  /* 新增定位上下文 */
-            z-index: 1;         /* 设置层级高于.hero::after */
+            animation: textFlow 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes textFlow {
@@ -129,26 +237,70 @@
         }
 
         .hero-title {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin: 0 0 24px;
             line-height: 1.1;
-            background: linear-gradient(45deg, #fff 30%, #7fb1fd 100%);
+            background: linear-gradient(45deg, #fff 20%, #a0c8ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(43, 126, 252, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
 
         /* 增强功能卡片 */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 80px;
+            color: var(--text-primary);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            border-radius: 3px;
+        }
+
+        .features {
+            position: relative;
+            padding: 120px 10%;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, rgba(10,10,10,1) 100%);
+        }
+
         .feature-grid {
             display: grid;
             gap: 32px;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            padding: 120px 10%;
             perspective: 1000px;
         }
 
         .feature-card {
-            padding: 32px;
+            padding: 40px 32px;
             border-radius: 24px;
             background: linear-gradient(
                 145deg,
@@ -159,12 +311,43 @@
             transition: 
                 transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
                 box-shadow 0.4s ease,
-                border-color 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                border-color 0.3s ease,
+                background 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: var(--elevation-1);
             opacity: 0;
             transform: translateY(40px);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0) 50%,
+                rgba(255,255,255,0.03) 100%
+            );
+            transform: rotate(30deg);
+            transition: var(--transition-fast);
+            opacity: 0;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-20%, -20%); }
+            100% { transform: rotate(30deg) translate(20%, 20%); }
         }
 
         .feature-card.in-view {
@@ -173,66 +356,162 @@
         }
 
         .feature-card:hover {
+            background: linear-gradient(
+                145deg,
+                rgba(38, 38, 38, 0.7) 0%,
+                rgba(28, 28, 28, 0.9) 100%
+            );
             transform: 
                 translateY(-15px)
-                scale(1.06)
-                rotateZ(1deg);
+                scale(1.03);
             box-shadow: 
-                0 32px 64px rgba(0, 0, 0, 0.5),
+                var(--elevation-2),
                 0 0 64px rgba(43, 126, 252, 0.25),
                 inset 0 0 24px rgba(255,255,255,0.1);
             border-color: rgba(43, 126, 252, 0.4);
-            z-index: 100;
+            z-index: 10;
         }
 
         .feature-icon {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             background: var(--accent);
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            transition: transform 0.4s ease;
+            margin-bottom: 28px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(43, 126, 252, 0.2) 0%,
+                transparent 100%
+            );
+            opacity: 0;
+            transition: var(--transition-fast);
+        }
+
+        .feature-card:hover .feature-icon::after {
+            opacity: 1;
         }
 
         .feature-icon .material-icons {
             font-size: 32px;
             color: var(--primary);
+            transition: var(--transition-fast);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotate(5deg) scale(1.1);
+            background: rgba(43, 126, 252, 0.1);
+            box-shadow: 0 0 24px rgba(43, 126, 252, 0.2);
+        }
+
+        .feature-card:hover .feature-icon .material-icons {
+            color: white;
+            text-shadow: 0 0 10px rgba(43, 126, 252, 0.5);
         }
 
         .feature-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin: 0 0 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+
+        .feature-card:hover .feature-title {
+            color: white;
         }
 
         .feature-desc {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
+            transition: var(--transition-fast);
+        }
+
+        .feature-card:hover .feature-desc {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* 下载按钮 */
         .download-btn {
-            padding: 16px 40px;
+            padding: 18px 42px;
             border-radius: 28px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             font-size: 1.1rem;
+            font-weight: 500;
             border: none;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 24px rgba(43, 126, 252, 0.3);
+            transition: var(--transition);
+            box-shadow: 0 8px 32px rgba(43, 126, 252, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.5px;
+            z-index: 1;
         }
 
-        /* 页脚流光效果 */
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            opacity: 0;
+            transition: var(--transition-fast);
+            z-index: -1;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(43, 126, 252, 0.4);
+        }
+
+        .download-btn:hover::before {
+            opacity: 1;
+        }
+
+        .download-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 16px rgba(43, 126, 252, 0.3);
+        }
+
+        .download-btn .material-icons {
+            font-size: 20px;
+            transition: var(--transition-fast);
+        }
+
+        .download-btn:hover .material-icons {
+            transform: translateX(3px);
+        }
+
+        /* 页脚 */
         footer {
             position: relative;
             overflow: hidden;
             text-align: center;
-            padding: 80px 10% 120px;
+            padding: 100px 10% 120px;
             color: var(--text-secondary);
+            background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.9) 100%);
+            z-index: 1;
         }
 
         footer::before {
@@ -240,21 +519,82 @@
             position: absolute;
             top: 0;
             left: 50%;
-            width: 60%;
+            width: 80%;
+            max-width: 800px;
             height: 2px;
             background: linear-gradient(
                 90deg,
-                transparent 25%,
-                rgba(43, 126, 252, 0.4) 50%,
-                transparent 75%
+                transparent 0%,
+                rgba(43, 126, 252, 0.6) 50%,
+                transparent 100%
             );
             transform: translateX(-50%);
-            animation: lineFlow 3s linear infinite;
         }
 
-        @keyframes lineFlow {
-            0% { background-position: -100% 0; }
-            100% { background-position: 200% 0; }
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .footer-logo img {
+            height: 36px;
+            filter: drop-shadow(0 2px 8px rgba(43, 126, 252, 0.3));
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
         }
 
         /* 模态框样式 */
@@ -264,55 +604,104 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 2000;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
         }
 
         .modal-container {
             background: linear-gradient(
                 135deg,
-                rgba(28, 28, 28, 0.9) 0%,
-                rgba(18, 18, 18, 0.95) 100%
+                rgba(28, 28, 28, 0.95) 0%,
+                rgba(18, 18, 18, 0.98) 100%
             );
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 32px;
             width: 90%;
             max-width: 500px;
             position: relative;
-            animation: modalIn 0.3s ease;
+            animation: modalIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: var(--glass-blur);
-            box-shadow: 0 0 48px rgba(43, 126, 252, 0.2);
-            border: 1px solid rgba(43, 126, 252, 0.1);
+            box-shadow: var(--elevation-2);
+            border: 1px solid rgba(43, 126, 252, 0.15);
+            transform-origin: center bottom;
         }
 
         @keyframes modalIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(20px) scale(0.95); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .modal-close {
             background: none;
             border: none;
             color: var(--text-secondary);
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
-            padding: 8px;
+            padding: 4px;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .modal-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        /* 滚动条样式 */
+        .modal-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+            border-radius: 3px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.3);
         }
 
         .download-link {
             display: flex;
             gap: 10px;
-            margin: 16px 0;
+            margin: 24px 0;
         }
 
         .download-link input {
@@ -320,122 +709,293 @@
             background: var(--background);
             border: 1px solid var(--accent);
             color: var(--text-primary);
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 10px;
             font-size: 14px;
+            transition: var(--transition-fast);
+        }
+
+        .download-link input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(43, 126, 252, 0.2);
         }
 
         .copy-btn {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: var(--transition);
+            font-weight: 500;
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(43, 126, 252, 0.3);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .copy-btn .material-icons {
+            font-size: 18px;
+        }
+
+        .modal-footer {
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+        }
+
+        /* 鸣谢名单样式 */
+        .credits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .credit-item {
+            padding: 16px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition-fast);
+        }
+
+        .credit-item:hover {
+            background: rgba(43, 126, 252, 0.1);
+            transform: translateY(-3px);
         }
 
         /* 响应式设计 */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .feature-grid { padding: 80px 5%; }
-            .modal-container { padding: 16px; }
-        }
-
-        @media (max-width: 480px) {
-            .download-btn {
-                padding: 16px 32px;
-                width: 100%;
-                max-width: 280px;
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
             }
         }
 
-        @media (max-width: 360px) {
-            .hero-title { font-size: 2rem !important; }
+        @media (max-width: 768px) {
+            .app-bar {
+                padding: 0 5%;
+            }
+            
+            .hero {
+                padding: 0 5%;
+                min-height: 600px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .features {
+                padding: 80px 5%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 60px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer {
+                padding: 80px 5% 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 32px;
+            }
+            
             .download-btn {
-                padding: 18px 28px;
-                font-size: 1.2rem;
                 width: 100%;
+                justify-content: center;
+            }
+            
+            .feature-card {
+                padding: 32px 24px;
+            }
+            
+            .modal-container {
+                padding: 24px;
+            }
+            
+            .download-link {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- 动态背景 -->
+    <div class="bg-wrapper">
+        <div class="bg-particles"></div>
+    </div>
+
+    <!-- 顶栏 -->
     <header class="app-bar">
-        <div class="brand-logo">
+        <a href="#" class="brand-logo">
             <img src="https://static.codemao.cn/pickduck/SJppJ8ankl.png?hash=FlfBJzWeO3eN3Tfwahxm21-wejSU" alt="QR Music">
             QR Music
+        </a>
+        <div class="nav-links">
+            <a href="#" class="nav-link" id="aboutLink">关于我们</a>
         </div>
     </header>
 
     <main>
+        <!-- 英雄区域 -->
         <section class="hero">
             <div class="hero-content">
                 <h1 class="hero-title">极简美学<br>重构音乐体验</h1>
-                <p style="font-size: 1.4rem; color: var(--text-secondary); margin-bottom: 48px;">
+                <p class="hero-subtitle">
                     无广告干扰 · 亿级曲库 · 智能跨端同步<br>
                     使用CoCo编辑器打造的精工之作<br>
-                    <br>
                     官方QQ群号：677063599
                 </p>
-                <button class="download-btn" id="downloadBtn">立即体验</button>
+                <div class="hero-cta">
+                    <button class="download-btn" id="downloadBtn">
+                        <i class="material-icons">download</i>
+                        立即体验
+                    </button>
+                </div>
             </div>
         </section>
 
-        <section class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="material-icons">library_music</i></div>
-                <h3 class="feature-title">海量曲库</h3>
-                <p class="feature-desc">拥有亿级曲库，覆盖全网大部分音乐</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="material-icons">sync_alt</i></div>
-                <h3 class="feature-title">无缝同步</h3>
-                <p class="feature-desc">跨设备歌单云同步，个人歌单永不丢失</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="material-icons">palette</i></div>
-                <h3 class="feature-title">极简美学</h3>
-                <p class="feature-desc">去除冗余功能以及广告，让您无需过多操作，便可享受到极致的音乐体验</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="material-icons">import_contacts</i></div>
-                <h3 class="feature-title">歌单迁移</h3>
-                <p class="feature-desc">一键导入网易云音乐歌单，完整保留您的收藏</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="material-icons">graphic_eq</i></div>
-                <h3 class="feature-title">自由定制</h3>
-                <p class="feature-desc">播放器拥有超高的可自定义能力，可按照自己的喜好对播放进行调整</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="material-icons">devices</i></div>
-                <h3 class="feature-title">全端兼容</h3>
-                <p class="feature-desc">移动端（目前仅有Android版）/桌面端（开发中）/网页端（开发中）无缝衔接体验</p>
+        <!-- 功能特色 -->
+        <section class="features" id="features">
+            <h2 class="section-title">功能特色</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="material-icons">library_music</i></div>
+                    <h3 class="feature-title">海量曲库</h3>
+                    <p class="feature-desc">拥有亿级曲库，覆盖全网大部分音乐，从经典老歌到最新热单，满足您的所有音乐需求。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="material-icons">sync_alt</i></div>
+                    <h3 class="feature-title">无缝同步</h3>
+                    <p class="feature-desc">跨设备歌单云同步，个人歌单永不丢失，随时随地继续您的音乐旅程。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="material-icons">palette</i></div>
+                    <h3 class="feature-title">极简美学</h3>
+                    <p class="feature-desc">去除冗余功能以及广告，让您无需过多操作，便可享受到极致的音乐体验。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="material-icons">import_contacts</i></div>
+                    <h3 class="feature-title">歌单迁移</h3>
+                    <p class="feature-desc">一键导入网易云音乐歌单，完整保留您的收藏，无需从头开始。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="material-icons">graphic_eq</i></div>
+                    <h3 class="feature-title">自由定制</h3>
+                    <p class="feature-desc">播放器拥有超高的可自定义能力，可按照自己的喜好对播放进行调整。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="material-icons">devices</i></div>
+                    <h3 class="feature-title">全端兼容</h3>
+                    <p class="feature-desc">移动端（目前仅有Android版）/桌面端（开发中）/网页端（开发中）无缝衔接体验。</p>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- 页脚 -->
     <footer>
-        <p>© 2025 QR音乐团队 · 官方QQ群：677063599</p>
-        <p style="margin-top: 16px;">在喧嚣世界中，听见内心的声音</p>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://static.codemao.cn/pickduck/SJppJ8ankl.png?hash=FlfBJzWeO3eN3Tfwahxm21-wejSU" alt="QR Music">
+                QR Music
+            </div>
+            <p class="footer-text">在喧嚣世界中，听见内心的声音。QR音乐致力于为您提供纯净、极致的音乐体验。</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">立即体验</a>
+                <a href="#features" class="footer-link">了解功能</a>
+            </div>
+            <p class="footer-copyright">© 2025 QR音乐团队 · 官方QQ群：677063599</p>
+        </div>
     </footer>
 
     <!-- 下载提示模态框 -->
     <div class="modal-mask" id="downloadModal">
         <div class="modal-container">
             <div class="modal-header">
-                <h3>提示</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <h3 class="modal-title">下载提示</h3>
+                <button class="modal-close" onclick="closeModal('downloadModal')">&times;</button>
             </div>
             <div class="modal-content">
-                <p>已尝试触发下载。若下载失败，请复制下载链接：</p>
+                <p>已尝试触发下载。若下载失败，请复制下方下载链接：</p>
                 <div class="download-link">
                     <input type="text" id="downloadUrl" readonly>
-                    <button class="copy-btn" onclick="copyLink()">复制链接</button>
+                    <button class="copy-btn" onclick="copyLink()">
+                        <i class="material-icons">content_copy</i>
+                        复制链接
+                    </button>
                 </div>
-                <p>若通过下载链接还是下载失败，请到官方QQ群寻求帮助（官方QQ群号：677063599）</p>
+                <p class="modal-footer">若通过下载链接还是下载失败，请到官方QQ群寻求帮助（官方QQ群号：677063599）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于我们模态框（合并了鸣谢内容） -->
+    <div class="modal-mask" id="aboutModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">关于我们</h3>
+                <button class="modal-close" onclick="closeModal('aboutModal')">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p>QR音乐是一款专注于极简美学和纯净体验的音乐播放器，由热爱音乐的开发者团队倾力打造。</p>
+                <p>我们致力于去除冗余功能，让您专注于音乐本身，享受纯粹的听觉体验。</p>
+                <p>如需获取我们的帮助，请加入官方QQ群：677063599</p>
+                
+                <h4 style="margin-top: 32px; color: var(--text-primary);">特别鸣谢</h4>
+                <p>感谢以下人员对QR音乐项目的贡献和支持（排名不分先后）：</p>
+                <div class="credits-list">
+                    <div class="credit-item">全体QR用户</div>
+                    <div class="credit-item">琦琦</div>
+                    <div class="credit-item">calyxor</div>
+                    <div class="credit-item">CHH</div>
+                    <div class="credit-item">明天的太阳</div>
+                    <div class="credit-item">小宏XeLa</div>
+                    <div class="credit-item">垃圾桶</div>
+                    <div class="credit-item">ZX</div>
+                    <div class="credit-item">Enzyme YouMing酶游明</div>
+                </div>
+                <p class="modal-footer" style="margin-top: 24px;">感谢每一位支持QR音乐的朋友！</p>
             </div>
         </div>
     </div>
@@ -444,8 +1004,21 @@
         // 基础交互逻辑
         const downloadUrl = 'https://creation.codemao.cn/434/E2CD40671410417893CDA6FBDDA75CE5/QR%E9%9F%B3%E4%B9%90.apk';
         const downloadBtn = document.getElementById('downloadBtn');
-        const modal = document.getElementById('downloadModal');
+        const aboutLink = document.getElementById('aboutLink');
+        const downloadModal = document.getElementById('downloadModal');
+        const aboutModal = document.getElementById('aboutModal');
+        const appBar = document.querySelector('.app-bar');
 
+        // 滚动时顶栏效果
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                appBar.classList.add('scrolled');
+            } else {
+                appBar.classList.remove('scrolled');
+            }
+        });
+
+        // 按钮交互效果
         let lastTap = 0;
         const tapDelay = 300;
 
@@ -460,31 +1033,51 @@
             try { navigator.vibrate?.(30); } catch {}
             this.classList.add('active');
             setTimeout(() => this.classList.remove('active'), 100);
-            showModal();
+            showModal('downloadModal');
+            // 尝试自动下载
+            setTimeout(() => {
+                window.location.href = downloadUrl;
+            }, 500);
         }
 
-        function showModal() {
-            document.getElementById('downloadUrl').value = downloadUrl;
-            modal.style.display = 'flex';
-            window.location.href = downloadUrl;
+        function showModal(modalId) {
+            if (modalId === 'downloadModal') {
+                document.getElementById('downloadUrl').value = downloadUrl;
+            }
+            document.getElementById(modalId).style.display = 'flex';
         }
 
-        function closeModal() { modal.style.display = 'none'; }
+        function closeModal(modalId) { 
+            document.getElementById(modalId).style.display = 'none';
+        }
 
         function copyLink() {
+            const btn = document.querySelector('.copy-btn');
+            btn.innerHTML = '<i class="material-icons">check</i> 已复制';
+            
             navigator.clipboard.writeText(downloadUrl).then(() => {
-                alert('链接已复制到剪贴板');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="material-icons">content_copy</i> 复制链接';
+                }, 2000);
             }).catch(() => {
                 const input = document.getElementById('downloadUrl');
                 input.select();
                 document.execCommand('copy');
-                alert('链接已复制');
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="material-icons">content_copy</i> 复制链接';
+                }, 2000);
             });
         }
 
         // 事件监听
         downloadBtn.addEventListener('click', handleInteraction, { passive: false, capture: true });
-        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        aboutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            showModal('aboutModal');
+        });
+        
+        downloadModal.addEventListener('click', (e) => { if (e.target === downloadModal) closeModal('downloadModal'); });
+        aboutModal.addEventListener('click', (e) => { if (e.target === aboutModal) closeModal('aboutModal'); });
 
         // 视口适配
         function checkViewport() {
@@ -502,10 +1095,12 @@
 
         // 滚动动画
         function animateOnScroll() {
-            document.querySelectorAll('.feature-card').forEach(card => {
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
                 const rect = card.getBoundingClientRect();
                 if(rect.top < window.innerHeight * 0.8) {
-                    card.classList.add('in-view');
+                    setTimeout(() => {
+                        card.classList.add('in-view');
+                    }, index * 100);
                 }
             });
         }
@@ -524,13 +1119,50 @@
                     rotateX(${(y - 0.5) * 4}deg)
                     rotateY(${(x - 0.5) * 4}deg)
                     translateY(-15px)
-                    scale(1.06)
+                    scale(1.03)
                 `;
             });
 
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // 创建动态粒子背景
+        function createParticles() {
+            const bgWrapper = document.querySelector('.bg-wrapper');
+            const particleCount = window.innerWidth < 768 ? 20 : 40;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机透明度
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // 随机动画时长
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // 随机延迟
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                
+                bgWrapper.appendChild(particle);
+            }
+        }
+
+        // 初始化
+        window.addEventListener('load', () => {
+            createParticles();
         });
     </script>
 </body>
