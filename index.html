@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Music、QR音乐官网 - 极简美学音乐体验</title>
+    <title>QR音乐官网 - 极简美学音乐体验</title>
     <meta name="description" content="QR音乐 - 极简美学重构音乐体验。无广告干扰的免费亿级曲库音乐平台，支持智能跨端同步和歌单迁移，提供Android客户端下载。加入官方QQ群677063599获取支持。">
     <!-- Clarity tracking code for https://ljt-ytwh-github-io.pages.dev/ -->
     <script>
@@ -17,17 +17,20 @@
     <!-- 引入字体和图标 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <!-- 引入动画库 -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
-            /* DeepSeek品牌蓝色调色板 */
+            /* 扩展DeepSeek品牌蓝色调色板 */
             --deepseek-blue: #1B6BEF;
             --deepseek-light: rgba(27, 107, 239, 0.2);
             --deepseek-dark: #1558C7;
             --deepseek-accent: #70B8FF;
+            --deepseek-purple: #8A6BEF;
+            --deepseek-teal: #00C8D5;
             --surface: #121212;
             --surface-light: rgba(30, 30, 30, 0.9);
             --background: #0A0A0A;
@@ -37,6 +40,7 @@
             --glass-blur: blur(20px);
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-fast: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            --gradient: linear-gradient(135deg, var(--deepseek-blue) 0%, var(--deepseek-purple) 100%);
         }
 
         * {
@@ -57,6 +61,9 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(27, 107, 239, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(138, 107, 239, 0.1) 0%, transparent 20%);
         }
 
         /* 宇宙粒子背景 */
@@ -96,25 +103,33 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-weight: 600;
-            font-size: 1.5rem;
+            font-weight: 700;
+            font-size: 1.8rem;
             color: var(--text-primary);
             text-decoration: none;
             transition: var(--transition-fast);
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.5px;
         }
 
         .logo:hover {
             transform: translateY(-2px);
+            text-shadow: 0 0 20px rgba(112, 184, 255, 0.5);
         }
 
         .logo img {
-            height: 36px;
-            filter: drop-shadow(0 0 12px rgba(27, 107, 239, 0.5));
+            height: 42px;
+            filter: drop-shadow(0 0 16px rgba(27, 107, 239, 0.7));
+            transition: all 0.5s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(10deg);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-link {
@@ -123,10 +138,12 @@
             font-weight: 500;
             position: relative;
             transition: var(--transition-fast);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
 
         .nav-link:hover {
-            color: var(--text-primary);
+            color: var(--deepseek-accent);
         }
 
         .nav-link::after {
@@ -152,6 +169,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            background: radial-gradient(circle at 80% 30%, rgba(27, 107, 239, 0.1) 0%, transparent 50%);
         }
 
         .hero-content {
@@ -161,24 +179,26 @@
         }
 
         .hero-title {
-            font-size: 4.5rem;
-            margin-bottom: 2rem;
-            line-height: 1.1;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
             background: linear-gradient(45deg, var(--text-primary) 20%, var(--deepseek-accent) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            font-weight: 700;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 20px rgba(27, 107, 239, 0.3);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            text-shadow: 0 8px 30px rgba(27, 107, 239, 0.4);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             color: var(--text-secondary);
             margin-bottom: 3rem;
-            max-width: 600px;
+            max-width: 700px;
             line-height: 1.7;
+            font-weight: 300;
         }
 
         .hero-actions {
@@ -188,20 +208,22 @@
 
         /* 按钮 */
         .deepseek-btn {
-            padding: 1.2rem 2.5rem;
+            padding: 1.3rem 2.8rem;
             border-radius: 2rem;
-            background: linear-gradient(135deg, var(--deepseek-blue) 0%, var(--deepseek-dark) 100%);
+            background: var(--gradient);
             color: white;
-            font-weight: 500;
+            font-weight: 600;
             border: none;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 8px 32px rgba(27, 107, 239, 0.3);
+            box-shadow: 0 8px 32px rgba(27, 107, 239, 0.4);
             position: relative;
             overflow: hidden;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
 
         .deepseek-btn::before {
@@ -211,15 +233,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--deepseek-accent) 0%, var(--deepseek-blue) 100%);
+            background: linear-gradient(135deg, var(--deepseek-accent) 0%, var(--deepseek-purple) 100%);
             opacity: 0;
             transition: var(--transition-fast);
             z-index: -1;
         }
 
         .deepseek-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(27, 107, 239, 0.4);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 45px rgba(27, 107, 239, 0.5);
         }
 
         .deepseek-btn:hover::before {
@@ -246,41 +268,45 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 6rem;
             color: var(--text-primary);
             position: relative;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: -0.5px;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -1rem;
+            bottom: -1.5rem;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--deepseek-blue), var(--deepseek-accent));
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
             border-radius: 2px;
         }
 
         .feature-grid {
             display: grid;
-            gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         }
 
         /* 卡片 */
         .deepseek-card {
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            background: rgba(28, 28, 28, 0.6);
+            padding: 2.8rem;
+            border-radius: 1.8rem;
+            background: rgba(28, 28, 28, 0.5);
             backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.08);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .deepseek-card::before {
@@ -294,7 +320,7 @@
                 to bottom right,
                 rgba(255,255,255,0) 0%,
                 rgba(255,255,255,0) 50%,
-                rgba(112, 184, 255, 0.1) 100%
+                rgba(112, 184, 255, 0.15) 100%
             );
             transform: rotate(30deg);
             transition: var(--transition-fast);
@@ -312,56 +338,78 @@
         }
 
         .deepseek-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 24px 64px rgba(27, 107, 239, 0.25);
-            border-color: rgba(27, 107, 239, 0.4);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 30px 70px rgba(27, 107, 239, 0.3);
+            border-color: rgba(27, 107, 239, 0.5);
+            background: rgba(28, 28, 28, 0.7);
         }
 
         .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(27, 107, 239, 0.1);
-            border-radius: 1rem;
+            width: 70px;
+            height: 70px;
+            background: rgba(27, 107, 239, 0.15);
+            border-radius: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition-fast);
         }
 
         .deepseek-card:hover .feature-icon {
-            background: rgba(112, 184, 255, 0.1);
+            background: rgba(112, 184, 255, 0.15);
             transform: rotate(5deg) scale(1.1);
         }
 
+        .deepseek-card:hover .feature-icon::before {
+            opacity: 0.2;
+        }
+
         .feature-icon .material-icons {
-            font-size: 32px;
-            color: var(--deepseek-blue);
+            font-size: 36px;
+            color: var(--deepseek-accent);
             transition: var(--transition);
+            z-index: 1;
         }
 
         .deepseek-card:hover .feature-icon .material-icons {
-            color: var(--deepseek-accent);
+            color: white;
+            transform: scale(1.2);
         }
 
         .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
             color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
         }
 
         .feature-desc {
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
         /* 页脚 */
         .deepseek-footer {
-            padding: 6rem 10%;
+            padding: 8rem 10% 4rem;
             text-align: center;
             background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.9) 100%);
             position: relative;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .deepseek-footer::before {
@@ -380,28 +428,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            font-weight: 600;
+            gap: 15px;
+            margin-bottom: 1.8rem;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .footer-logo img {
-            height: 36px;
+            height: 42px;
+            filter: drop-shadow(0 0 15px rgba(27, 107, 239, 0.6));
         }
 
         .footer-text {
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 2.5rem;
             color: var(--text-secondary);
             line-height: 1.8;
+            font-size: 1.2rem;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 2.5rem;
+            margin-bottom: 3.5rem;
         }
 
         .footer-link {
@@ -409,19 +460,21 @@
             text-decoration: none;
             transition: var(--transition-fast);
             position: relative;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
         }
 
         .footer-link:hover {
-            color: var(--text-primary);
+            color: var(--deepseek-accent);
         }
 
         .footer-link::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: 0;
             left: 0;
             width: 0;
-            height: 1px;
+            height: 2px;
             background: var(--deepseek-accent);
             transition: var(--transition-fast);
         }
@@ -432,7 +485,24 @@
 
         .footer-copyright {
             color: var(--text-tertiary);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-qq {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(27, 107, 239, 0.15);
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-qq:hover {
+            background: rgba(27, 107, 239, 0.25);
+            transform: translateY(-2px);
         }
 
         /* 模态框 */
@@ -442,46 +512,52 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 2000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
 
         .modal-container {
             background: rgba(28, 28, 28, 0.95);
-            border-radius: 1.5rem;
-            padding: 2.5rem;
+            border-radius: 2rem;
+            padding: 3rem;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             position: relative;
-            border: 1px solid rgba(27, 107, 239, 0.3);
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(27, 107, 239, 0.4);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+            background-image: radial-gradient(circle at top right, rgba(27, 107, 239, 0.1) 0%, transparent 40%);
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .modal-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .modal-close {
             background: none;
             border: none;
             color: var(--text-secondary);
-            font-size: 1.5rem;
+            font-size: 2rem;
             cursor: pointer;
             transition: var(--transition-fast);
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -489,21 +565,23 @@
         }
 
         .modal-close:hover {
-            color: var(--text-primary);
+            color: var(--deepseek-accent);
             background: rgba(255,255,255,0.05);
+            transform: rotate(90deg);
         }
 
         .modal-content {
             color: var(--text-secondary);
             line-height: 1.7;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
             max-height: 60vh;
             overflow-y: auto;
-            padding-right: 8px;
+            padding-right: 10px;
+            font-size: 1.1rem;
         }
 
         .modal-content::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         .modal-content::-webkit-scrollbar-track {
@@ -511,14 +589,14 @@
         }
 
         .modal-content::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.2);
-            border-radius: 3px;
+            background: var(--deepseek-blue);
+            border-radius: 4px;
         }
 
         .download-input {
             display: flex;
             gap: 1rem;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
 
         .download-input input {
@@ -526,41 +604,63 @@
             background: var(--surface);
             border: 1px solid rgba(27, 107, 239, 0.3);
             color: var(--text-primary);
-            padding: 0.8rem 1rem;
-            border-radius: 0.8rem;
-            font-size: 0.9rem;
+            padding: 1rem 1.2rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+            transition: var(--transition-fast);
         }
 
         .download-input input:focus {
             outline: none;
             border-color: var(--deepseek-blue);
-            box-shadow: 0 0 0 2px rgba(27, 107, 239, 0.2);
+            box-shadow: 0 0 0 3px rgba(27, 107, 239, 0.3);
         }
 
         .modal-footer {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-tertiary);
+            margin-top: 1.5rem;
         }
 
         /* 鸣谢列表 */
         .credits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
         }
 
         .credit-item {
-            padding: 1rem;
+            padding: 1.2rem;
             background: rgba(255,255,255,0.05);
-            border-radius: 0.8rem;
+            border-radius: 1rem;
             text-align: center;
             transition: var(--transition-fast);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
 
         .credit-item:hover {
-            background: rgba(27, 107, 239, 0.1);
-            transform: translateY(-3px);
+            background: rgba(27, 107, 239, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(27, 107, 239, 0.2);
+        }
+
+        .credit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: var(--transition-fast);
+        }
+
+        .credit-item:hover::before {
+            opacity: 1;
         }
 
         /* 复制反馈提示 */
@@ -571,16 +671,17 @@
             transform: translateX(-50%);
             background: rgba(27, 107, 239, 0.9);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 2rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 20px rgba(27, 107, 239, 0.3);
+            gap: 0.8rem;
+            box-shadow: 0 6px 25px rgba(27, 107, 239, 0.4);
             z-index: 3000;
             opacity: 0;
             transition: all 0.3s ease;
             pointer-events: none;
+            font-weight: 500;
         }
 
         .copy-feedback.show {
@@ -596,11 +697,11 @@
         /* 响应式设计 */
         @media (max-width: 1024px) {
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 4rem;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
         }
 
@@ -614,7 +715,7 @@
             }
             
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 3.2rem;
             }
             
             .hero-actions {
@@ -623,24 +724,24 @@
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
                 margin-bottom: 4rem;
             }
             
             .copy-feedback {
                 width: 90%;
                 text-align: center;
-                padding: 0.8rem 1rem;
+                padding: 1rem 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             
             .deepseek-btn {
@@ -649,11 +750,11 @@
             }
             
             .deepseek-card {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .modal-container {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .download-input {
@@ -662,6 +763,11 @@
             
             .footer-links {
                 flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
             }
         }
     </style>
@@ -686,10 +792,10 @@
         <!-- 英雄区域 -->
         <section class="deepseek-hero">
             <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
-                <h1 class="hero-title">极简美学<br>重构音乐体验</h1>
+                <h1 class="hero-title">纯粹音境<br>重构音乐体验</h1>
                 <p class="hero-subtitle">
                     无广告干扰 · 亿级曲库 · 智能跨端同步<br>
-                    使用CoCo编辑器打造的精工之作<br>
+                    使用CoCo编辑器打造的精工之作，沉浸式音乐体验
                 </p>
                 <div class="hero-actions">
                     <button class="deepseek-btn" id="downloadBtn">
@@ -702,7 +808,7 @@
 
         <!-- 功能特色 -->
         <section class="deepseek-features" id="features">
-            <h2 class="section-title" data-aos="fade-up">功能特色</h2>
+            <h2 class="section-title" data-aos="fade-up">极致体验</h2>
             <div class="feature-grid">
                 <div class="deepseek-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-icon"><i class="material-icons">library_music</i></div>
@@ -750,7 +856,11 @@
                 <a href="#" class="footer-link">立即体验</a>
                 <a href="#features" class="footer-link">了解功能</a>
             </div>
-            <p class="footer-copyright">© 2025 QR音乐团队 · 官方QQ群：677063599</p>
+            <div class="footer-qq">
+                <i class="material-icons">group</i>
+                <span>官方QQ群：677063599</span>
+            </div>
+            <p class="footer-copyright">© 2025 QR音乐团队 · 用音乐连接心灵</p>
         </div>
     </footer>
 
@@ -765,12 +875,12 @@
                 <p>已尝试触发下载。若下载失败，请复制下方下载链接：</p>
                 <div class="download-input">
                     <input type="text" id="downloadUrl" readonly>
-                    <button class="deepseek-btn" onclick="copyLink()" style="padding: 0.8rem 1.5rem;">
+                    <button class="deepseek-btn" onclick="copyLink()" style="padding: 1rem 1.8rem;">
                         <i class="material-icons">content_copy</i>
                         复制
                     </button>
                 </div>
-                <p class="modal-footer">若通过下载链接还是下载失败，请到官方QQ群寻求帮助（QQ群号：677063599）</p>
+                <p class="modal-footer">若通过下载链接还是下载失败，请到官方QQ群寻求帮助（官方QQ群号：677063599）</p>
             </div>
         </div>
     </div>
@@ -787,7 +897,7 @@
                 <p>我们致力于去除冗余功能，让您专注于音乐本身，享受纯粹的听觉体验。</p>
                 <p>如需获取我们的帮助，请加入官方QQ群：677063599</p>
                 
-                <h4 style="margin-top: 2rem; color: var(--text-primary);">特别鸣谢</h4>
+                <h4 style="margin-top: 2rem; color: var(--text-primary); font-weight: 600;">特别鸣谢</h4>
                 <p>感谢以下人员对QR音乐项目的贡献和支持（排名不分先后）：</p>
                 <div class="credits-grid">
                     <div class="credit-item">全体QR用户</div>
@@ -826,7 +936,7 @@
         // 初始化粒子背景
         particlesJS('particles-js', {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
+                number: { value: 120, density: { enable: true, value_area: 800 } },
                 color: { value: "#1B6BEF" },
                 shape: { type: "circle" },
                 opacity: { value: 0.5, random: true },
@@ -946,7 +1056,7 @@
                     perspective(1000px)
                     rotateX(${(y - rect.height/2) / 20}deg)
                     rotateY(${-(x - rect.width/2) / 20}deg)
-                    translateY(-10px)
+                    translateY(-15px)
                     scale(1.03)
                 `;
             });
