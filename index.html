@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5f7">
+  <meta name="description" content="SuchMusic 社区版，一款由社区打磨的 Android 插件化音乐播放器。沉浸歌词、横屏封面流、播放增强与开放音源，让音乐回到音乐。">
+  <title>SuchMusic 社区版｜让音乐，回到音乐</title>
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="preload" href="./assets/logo.png" as="image">
+  <link rel="preload" href="./首页浅色横屏.jpg" as="image">
+  <link rel="preload" href="./首页浅色竖屏.jpg" as="image">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+  <noscript><style>.reveal{opacity:1!important;transform:none!important}.story-step{position:relative!important;opacity:1!important;transform:none!important;margin-bottom:32px}.product-story{height:auto!important}.product-sticky{position:relative!important;height:auto!important;padding:100px 0}.product-landscape{display:none}</style></noscript>
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-3.9c.04-1-.35-1.96-1.1-2.6 3.6-.4 7.1-1.8 7.1-7.6 0-1.7-.6-3-1.6-4.1.2-.4.7-2-.1-4.1 0 0-1.4-.4-4.4 1.6a15 15 0 0 0-8 0C4 1.4 2.6 1.8 2.6 1.8c-.8 2.1-.3 3.7-.1 4.1a6 6 0 0 0-1.6 4.1c0 5.8 3.5 7.2 7.1 7.6-.6.5-1 1.3-1.1 2.2V22"/><path d="M6.8 17.5c-2 .8-3.5-.4-4.2-1.2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13M9 8l11-2"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"/></symbol>
+    <symbol id="i-next" viewBox="0 0 24 24"><path d="m6 5 10 7-10 7zM18 5v14"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
+    <symbol id="i-plugin" viewBox="0 0 24 24"><path d="M8 3v5m8-5v5M6 8h12v4a6 6 0 0 1-12 0zM12 18v3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 5h4M11 19h2"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 7h-7V0M4 17h7v7"/><path d="M5.5 9a8 8 0 0 1 13-4L20 7M4 17l1.5 2a8 8 0 0 0 13-4"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M1 14h6m2-6h6m2 8h6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
+    <symbol id="i-export" viewBox="0 0 24 24"><path d="M12 15V3m0 0L7 8m5-5 5 5M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h8l-1 8 9-12h-8z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 9-4 3 4 3m8-6 4 3-4 3m-3-9-2 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5zM19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8zM5 14l.8 1.2L7 16l-1.2.8L5 18l-.8-1.2L3 16l1.2-.8z"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.7 9.7 0 0 1-4-.9L3 21l1.8-4.5A8.3 8.3 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.5 8.4 8.4 0 0 1 9 8.5z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" data-header>
+    <nav class="nav-shell" aria-label="主导航">
+      <a class="brand" href="#overview" aria-label="SuchMusic 社区版首页">
+        <img src="./assets/logo.png" alt="" width="32" height="32">
+        <span>SuchMusic</span>
+        <span class="brand-badge">社区版</span>
+      </a>
+      <div class="nav-links" data-nav-links>
+        <a href="#experience">沉浸体验</a>
+        <a href="#features">功能设计</a>
+        <a href="#cover-flow">封面流</a>
+        <a href="#open-source">开放社区</a>
+        <a href="#qq-group">交流群</a>
+      </div>
+      <a class="nav-download" href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile/releases" target="_blank" rel="noreferrer">
+        获取社区版
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+      </a>
+      <button class="menu-toggle icon-button" type="button" aria-label="打开导航菜单" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <svg class="icon menu-icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon close-icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+      <a href="#experience">沉浸体验</a>
+      <a href="#features">功能设计</a>
+      <a href="#cover-flow">封面流</a>
+      <a href="#open-source">开放社区</a>
+      <a href="#qq-group">官方交流群</a>
+      <a href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile/releases" target="_blank" rel="noreferrer">获取社区版<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="overview" aria-labelledby="hero-title">
+      <div class="hero-layout section-shell">
+        <div class="hero-copy reveal">
+          <div class="hero-edition"><img src="./assets/logo.png" alt="" width="32" height="32"><span>SuchMusic 社区版</span></div>
+          <h1 id="hero-title">让音乐，<br><span>回到音乐。</span></h1>
+          <p>把音源的选择留给你，把聆听的体验交还给音乐。<br class="desktop-break">开放、纯粹，也足够有表现力。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile/releases" target="_blank" rel="noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>下载 Android 版</a>
+            <a class="button button-text" href="#experience">探索体验<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+          <span class="hero-note"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>开源软件 · 音源由你自行配置</span>
+        </div>
+
+        <figure class="hero-landscape-frame landscape-crop reveal">
+          <img src="./首页浅色横屏.jpg" alt="SuchMusic 社区版浅色横屏首页实拍" width="2412" height="1080" fetchpriority="high">
+        </figure>
+      </div>
+    </section>
+
+    <section class="principles section-shell" aria-label="产品特点">
+      <div class="principle reveal"><svg class="icon" aria-hidden="true"><use href="#i-plugin"/></svg><div><strong>开放音源</strong><span>不预设曲库，自由配置插件</span></div></div>
+      <div class="principle reveal"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg><div><strong>沉浸表达</strong><span>歌词、封面与动效融为一体</span></div></div>
+      <div class="principle reveal"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg><div><strong>社区共建</strong><span>以开放源代码延续创作</span></div></div>
+    </section>
+
+    <section class="intro section-shell reveal" aria-labelledby="intro-title">
+      <span class="section-kicker">SUCHMUSIC COMMUNITY</span>
+      <h2 id="intro-title">不止是播放器。<br><span>是你与音乐之间的默契。</span></h2>
+      <p>克制的界面，自然的动效，丰富的播放能力。<br>让每一次触碰都有回应，也让内容始终是主角。</p>
+    </section>
+
+    <section class="product-story" id="experience" aria-label="社区版横竖屏实拍滚动展示" data-product-story data-scene="portrait">
+      <div class="product-sticky">
+        <svg class="product-ambient" viewBox="0 0 800 800" aria-hidden="true">
+          <defs><linearGradient id="product-ambient-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#65b5ff"/><stop offset="1" stop-color="#7767ed"/></linearGradient></defs>
+          <circle cx="400" cy="400" r="265"/><circle cx="400" cy="400" r="345"/><path d="M40 430c120-150 210 160 330 0s210 160 390-30"/><path d="M85 510c105-110 190 100 295-10s190 100 335-20"/>
+        </svg>
+        <div class="product-layout section-shell">
+          <div class="story-copy">
+            <span class="section-kicker light">PORTRAIT &amp; LANDSCAPE</span>
+            <div class="story-steps">
+              <article class="story-step is-active" data-story-step>
+                <h2>竖屏，<br>单手刚刚好。</h2>
+                <p>常用入口落在拇指舒适区，歌单、搜索与播放控制自然触手可及。</p>
+              </article>
+              <article class="story-step" data-story-step>
+                <h2>横过来，<br>视野自然展开。</h2>
+                <p>导航与内容重新排布，不只是旋转画面，而是为宽屏重新组织每一次浏览。</p>
+              </article>
+              <article class="story-step" data-story-step>
+                <h2>一种设计，<br>两种自在。</h2>
+                <p>相同的色彩、圆角与内容层级，在不同方向里保持一致而熟悉的体验。</p>
+              </article>
+            </div>
+            <div class="story-guide"><span>滚动切换视角</span><div class="story-dots" aria-hidden="true"><i class="active"></i><i></i><i></i></div></div>
+          </div>
+
+          <div class="product-visual" data-product-visual>
+            <figure class="product-shot product-portrait">
+              <img src="./首页浅色竖屏.jpg" alt="社区版浅色竖屏首页，展示推荐歌单、歌曲列表与底部导航" width="1080" height="2292" loading="lazy">
+              <figcaption>竖屏首页 · 浅色</figcaption>
+            </figure>
+            <figure class="product-shot product-landscape landscape-crop">
+              <img src="./首页浅色横屏.jpg" alt="社区版浅色横屏首页，展示左侧导航与横向内容布局" width="2412" height="1080" loading="lazy">
+              <figcaption>横屏首页 · 浅色</figcaption>
+            </figure>
+            <span class="product-visual-note"><i></i>社区版真实界面</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features section-shell" id="features" aria-labelledby="features-title">
+      <div class="section-heading reveal">
+        <span class="section-kicker">DESIGNED AROUND YOU</span>
+        <h2 id="features-title">懂音乐，也懂你。</h2>
+        <p>强大的能力，不必以复杂为代价。</p>
+      </div>
+
+      <div class="bento-grid">
+        <article class="bento-card plugin-card reveal" data-tilt>
+          <div class="bento-copy"><div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-plugin"/></svg></div><h3>音源这件事，<br>交还给你。</h3><p>沿用插件化体系，不绑定固定曲库。按自己的需求配置，让播放器真正适合你。</p></div>
+          <div class="plugin-visual" aria-hidden="true">
+            <div class="plugin-rings"><i></i><i></i><i></i></div>
+            <img class="plugin-logo" src="./assets/logo.png" alt="" loading="lazy">
+            <div class="plugin-node node-one"><svg class="icon"><use href="#i-music"/></svg><span>音乐插件</span></div>
+            <div class="plugin-node node-two"><svg class="icon"><use href="#i-folder"/></svg><span>本地音乐</span></div>
+            <div class="plugin-node node-three"><svg class="icon"><use href="#i-heart"/></svg><span>我的歌单</span></div>
+          </div>
+        </article>
+
+        <article class="bento-card lyric-feature-card reveal" data-tilt>
+          <div class="feature-icon small"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
+          <h3>歌词，跟着节奏呼吸。</h3><p>逐字高亮与可配置翻译，让每一段旋律更近一步。</p>
+          <div class="lyric-art" aria-hidden="true">
+            <svg viewBox="0 0 420 155">
+              <defs><linearGradient id="lyric-card-gradient" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2c8efd"/><stop offset="1" stop-color="#7ac5ff"/></linearGradient></defs>
+              <path class="lyric-art-guide" d="M8 28H412M8 82H412M8 136H412"/>
+              <circle class="lyric-art-dot" cx="12" cy="69" r="4"/>
+              <text class="lyric-art-text small" x="28" y="32">让每一段旋律</text>
+              <text class="lyric-art-text active" x="28" y="79">都有清晰的模样</text>
+              <text class="lyric-art-text" x="28" y="132">从这一拍，到下一拍</text>
+              <path class="lyric-art-wave" d="M296 93c12-22 20 22 32 0s20 22 32 0 20 22 32 0"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="bento-card theme-card reveal" data-tilt>
+          <div class="card-topline"><div class="feature-icon small"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg></div><div class="theme-choices" aria-label="主题插画色彩"><button class="active" type="button" aria-label="展示浅色插画" aria-pressed="true" data-preview-theme="light"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg></button><button type="button" aria-label="展示深色插画" aria-pressed="false" data-preview-theme="dark"><svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg></button></div></div>
+          <h3>明暗之间，各有所爱。</h3><p>从清新浅色到沉浸深色，始终舒适。</p>
+          <div class="theme-art" data-theme-art aria-hidden="true">
+            <svg viewBox="0 0 280 138">
+              <rect class="theme-art-bg" x="20" y="8" width="240" height="122" rx="34"/>
+              <circle class="theme-art-orbit" cx="140" cy="69" r="48"/>
+              <circle class="theme-art-main" cx="124" cy="69" r="38"/>
+              <circle class="theme-art-shadow" cx="157" cy="69" r="38"/>
+              <path class="theme-art-spark" d="m210 24 3 8 8 3-8 3-3 8-3-8-8-3 8-3zM65 91l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="bento-card audio-card reveal" data-tilt>
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></div><h3>调校你的专属听感。</h3><p>均衡器、响度均衡、变速与立体声扩展，让声音更贴近你的偏好。</p>
+          <div class="equalizer" aria-hidden="true"><i style="--level:42%"></i><i style="--level:65%"></i><i style="--level:82%"></i><i style="--level:58%"></i><i style="--level:74%"></i><i style="--level:48%"></i><i style="--level:68%"></i><i style="--level:36%"></i></div>
+        </article>
+
+        <article class="bento-card export-card reveal" data-tilt>
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-export"/></svg></div><h3>好音乐，妥善收藏。</h3><p>按需导出音频与歌词，并将标题、歌手、专辑和封面标签一同保留。</p>
+          <div class="export-stack" aria-hidden="true"><span><svg class="icon"><use href="#i-music"/></svg>音频文件<svg class="icon check"><use href="#i-check"/></svg></span><span><svg class="icon"><use href="#i-sparkles"/></svg>歌词与译文<svg class="icon check"><use href="#i-check"/></svg></span><span><svg class="icon"><use href="#i-folder"/></svg>完整标签<svg class="icon check"><use href="#i-check"/></svg></span></div>
+        </article>
+
+        <article class="bento-card performance-card reveal" data-tilt>
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></div><h3>流畅，藏在细节里。</h3><p>长列表虚拟化、封面预加载与合成层动效，把资源留给真正重要的体验。</p>
+          <div class="performance-visual" aria-hidden="true"><div class="speed-ring"><span>轻盈<br>响应</span></div><div class="speed-lines"><i></i><i></i><i></i><i></i></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="detail-section section-shell" id="detail-experience" aria-labelledby="detail-title">
+      <div class="section-heading detail-heading reveal"><span class="section-kicker">THE DETAILS MATTER</span><h2 id="detail-title">再近一点，<br>发现更多用心。</h2><p>从歌词、翻译到声音与性能，五处细节，让每一次聆听更完整。</p></div>
+
+      <div class="detail-grid">
+        <article class="detail-card lyric-detail reveal">
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
+          <h3>每一个字，<br>都踩在节拍上。</h3>
+          <p>逐字高亮跟随演唱自然推进，原文与译文也能并肩呈现。</p>
+          <div class="detail-art lyric-art" aria-hidden="true">
+            <svg viewBox="0 0 420 190">
+              <defs><linearGradient id="detail-lyric-gradient" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2c8efd"/><stop offset="1" stop-color="#7ac5ff"/></linearGradient></defs>
+              <path class="lyric-art-guide" d="M8 34H412M8 94H412M8 154H412"/>
+              <circle class="lyric-art-dot" cx="12" cy="81" r="4"/>
+              <text class="lyric-art-text small" x="28" y="38">让每一段旋律</text>
+              <text class="lyric-art-text active" x="28" y="91">都有清晰的模样</text>
+              <text class="lyric-art-text" x="28" y="151">从这一拍，到下一拍</text>
+              <path class="lyric-art-wave" d="M296 108c12-22 20 22 32 0s20 22 32 0 20 22 32 0"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="detail-card audio-detail reveal">
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></div>
+          <h3>你的声音，<br>不止一种答案。</h3>
+          <p>均衡器、响度均衡、变速与立体声扩展，找到更贴近你的听感。</p>
+          <div class="detail-art equalizer" aria-hidden="true"><i style="--level:42%"></i><i style="--level:65%"></i><i style="--level:82%"></i><i style="--level:58%"></i><i style="--level:74%"></i><i style="--level:48%"></i><i style="--level:68%"></i><i style="--level:36%"></i></div>
+        </article>
+
+        <article class="detail-card translate-detail reveal">
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg></div>
+          <h3>听见旋律，<br>也读懂表达。</h3>
+          <p>原文与 AI 译文并肩呈现，让不同语言的表达同样清晰。</p>
+          <div class="detail-art translate-art" aria-hidden="true">
+            <svg viewBox="0 0 360 150">
+              <rect class="translate-art-bg" x="8" y="8" width="344" height="134" rx="24"/>
+              <rect class="translate-art-chip" x="28" y="28" width="44" height="26" rx="13"/>
+              <text class="translate-art-chip-text" x="50" y="46" text-anchor="middle">EN</text>
+              <text class="translate-art-original" x="88" y="47">Let the music</text>
+              <path class="translate-art-arrow" d="M50 66v18m0 0-5-5m5 5 5-5"/>
+              <rect class="translate-art-chip target" x="28" y="96" width="44" height="26" rx="13"/>
+              <text class="translate-art-chip-text target" x="50" y="114" text-anchor="middle">中</text>
+              <text class="translate-art-target" x="88" y="116">让音乐，拉近彼此</text>
+            </svg>
+          </div>
+        </article>
+
+        <article class="detail-card export-detail reveal">
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-export"/></svg></div>
+          <h3>带走音乐，<br>也带走它的完整。</h3>
+          <p>导出音频与歌词，并保留标题、歌手、专辑和封面标签。</p>
+          <div class="detail-art export-stack" aria-hidden="true"><span><svg class="icon"><use href="#i-music"/></svg>音频文件<svg class="icon check"><use href="#i-check"/></svg></span><span><svg class="icon"><use href="#i-sparkles"/></svg>歌词与译文<svg class="icon check"><use href="#i-check"/></svg></span><span><svg class="icon"><use href="#i-folder"/></svg>完整标签<svg class="icon check"><use href="#i-check"/></svg></span></div>
+        </article>
+
+        <article class="detail-card fluid-detail reveal">
+          <div class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></div>
+          <h3>每一次滑动，<br>都恰到好处。</h3>
+          <p>列表优化、封面预加载与合成层动效，让浏览和播放保持轻盈。</p>
+          <div class="detail-art performance-visual" aria-hidden="true"><div class="speed-ring"><span>轻盈<br>响应</span></div><div class="speed-lines"><i></i><i></i><i></i><i></i></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cover-section" id="cover-flow" aria-labelledby="cover-title">
+      <div class="cover-glow" aria-hidden="true"></div>
+      <div class="section-heading cover-heading reveal"><span class="section-kicker light">LANDSCAPE COVER FLOW</span><h2 id="cover-title">横过来，<br>让封面成为主角。</h2><p>拖动、点击或用方向键，在光影之间浏览你的音乐世界。</p></div>
+      <div class="cover-carousel reveal" data-cover-carousel tabindex="0" role="region" aria-roledescription="轮播" aria-label="示例歌单封面流，使用左右方向键切换">
+        <div class="cover-stage" data-cover-stage>
+          <button class="cover-slide is-active" type="button" data-cover-slide data-title="《明日方舟：终末地》原声集" data-meta="社区歌单 · 252 首" aria-label="查看《明日方舟：终末地》原声集" aria-current="true"><img src="./assets/covers/playlist-1.jpg" alt="《明日方舟：终末地》原声集封面" loading="lazy" draggable="false"></button>
+          <button class="cover-slide" type="button" data-cover-slide data-title="明日方舟：终末地「丹青渡」" data-meta="社区歌单 · 240 首" aria-label="查看明日方舟：终末地「丹青渡」"><img src="./assets/covers/playlist-2.jpg" alt="丹青渡歌单封面" loading="lazy" draggable="false"></button>
+          <button class="cover-slide" type="button" data-cover-slide data-title="【终末地】明日方舟：终末地合辑" data-meta="社区歌单 · 224 首" aria-label="查看终末地合辑"><img src="./assets/covers/playlist-3.jpg" alt="终末地合辑封面" loading="lazy" draggable="false"></button>
+          <button class="cover-slide" type="button" data-cover-slide data-title="明日方舟（人声合集）" data-meta="社区歌单 · 71 首" aria-label="查看明日方舟人声合集"><img src="./assets/covers/playlist-4.jpg" alt="明日方舟人声合集封面" loading="lazy" draggable="false"></button>
+          <button class="cover-slide" type="button" data-cover-slide data-title="《明日方舟：终末地》全收录" data-meta="社区歌单 · 250 首" aria-label="查看终末地全收录"><img src="./assets/covers/playlist-5.jpg" alt="终末地全收录封面" loading="lazy" draggable="false"></button>
+        </div>
+        <div class="cover-info" aria-live="polite"><div><strong data-cover-title>《明日方舟：终末地》原声集</strong><span data-cover-meta>社区歌单 · 252 首</span></div><span class="cover-count"><b data-cover-current>01</b> / 05</span></div>
+        <div class="cover-controls"><button class="round-button" type="button" aria-label="上一张封面" data-cover-prev><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg></button><div class="cover-dots" role="group" aria-label="选择封面"><button class="active" type="button" aria-label="第 1 张封面" aria-pressed="true"></button><button type="button" aria-label="第 2 张封面" aria-pressed="false"></button><button type="button" aria-label="第 3 张封面" aria-pressed="false"></button><button type="button" aria-label="第 4 张封面" aria-pressed="false"></button><button type="button" aria-label="第 5 张封面" aria-pressed="false"></button></div><button class="round-button" type="button" aria-label="下一张封面" data-cover-next><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button></div>
+        <p class="carousel-hint"><span></span>拖动封面，或使用左右方向键</p>
+      </div>
+      <p class="cover-credit section-shell">歌单封面与信息来自所提供的示例数据，仅用于产品界面展示。</p>
+    </section>
+
+    <section class="community section-shell" id="open-source" aria-labelledby="community-title">
+      <div class="community-intro reveal"><span class="section-kicker">OPEN BY NATURE</span><h2 id="community-title">开放，<br>不只是一种许可。</h2><p>SuchMusic 社区版源自 SuchMusic-NG。我们保留原作的创作印记，也把移动端的探索继续交给社区。</p><div class="community-actions"><a class="button button-dark" href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile" target="_blank" rel="noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>在 GitHub 查看源码</a><a class="inline-link" href="https://github.com/Enzymeym/SuchMusic-NG" target="_blank" rel="noreferrer">了解原项目<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></div></div>
+      <div class="open-panel reveal">
+        <div class="open-panel-top"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg><span>BUILT IN THE OPEN</span><i></i></div>
+        <div class="open-word" aria-hidden="true">OPEN<span>SOURCE</span></div>
+        <div class="open-facts"><div><strong>AGPL-3.0</strong><span>开放源代码许可</span></div><div><strong>Android 7.0+</strong><span>移动端运行环境</span></div><div><strong>Community</strong><span>由社区持续打磨</span></div></div>
+      </div>
+      <div class="credits reveal"><div><span>原项目作者</span><strong>酶游明</strong><a href="https://github.com/Enzymeym" target="_blank" rel="noreferrer">@Enzymeym<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></div><div><span>社区版作者</span><strong>柠檬桶</strong><a href="https://github.com/LJT-YTWH" target="_blank" rel="noreferrer">@LJT-YTWH<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></div><div><span>共同致谢</span><strong>每一位贡献者</strong><p>代码、反馈与每一份热爱</p></div></div>
+    </section>
+
+    <section class="qq-section section-shell reveal" id="qq-group" aria-labelledby="qq-title">
+      <div class="qq-ambient" aria-hidden="true">
+        <svg viewBox="0 0 1200 440" preserveAspectRatio="none">
+          <defs><linearGradient id="qq-line-gradient" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2c8efd" stop-opacity="0"/><stop offset=".55" stop-color="#2c8efd" stop-opacity=".28"/><stop offset="1" stop-color="#7767ed" stop-opacity="0"/></linearGradient></defs>
+          <path class="qq-orbit-line" d="M-40 310C240 40 430 480 730 210S1050 70 1260 210"/>
+          <path class="qq-orbit-line secondary" d="M-60 360C220 90 450 500 760 250s360-100 540 30"/>
+          <circle class="qq-orbit-ring" cx="1030" cy="80" r="150"/><circle class="qq-orbit-ring" cx="1030" cy="80" r="210"/>
+          <g class="qq-chat-shape" transform="translate(890 62)"><rect width="118" height="76" rx="28"/><path d="m34 72-12 24 34-20"/><circle cx="38" cy="38" r="5"/><circle cx="59" cy="38" r="5"/><circle cx="80" cy="38" r="5"/></g>
+        </svg>
+      </div>
+      <div class="qq-copy"><span class="section-kicker">STAY IN THE LOOP</span><h2 id="qq-title">和同好一起，<br>把热爱继续下去。</h2><p>加入 SuchMusic 官方交流群，获取版本动态、使用帮助，也欢迎分享你的想法与反馈。</p></div>
+      <div class="qq-join"><span class="qq-join-label"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>官方 QQ 交流群</span><strong data-qq-number>677063599</strong><button class="button button-dark" type="button" data-copy-qq="677063599"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg><span data-copy-label>复制群号</span></button><small data-copy-feedback aria-live="polite">在 QQ 中搜索群号即可加入</small></div>
+    </section>
+
+    <section class="getting-started section-shell" id="start" aria-labelledby="start-title">
+      <div class="section-heading start-heading reveal"><span class="section-kicker">GETTING STARTED</span><h2 id="start-title">三步，开始聆听。</h2><p>从下载到音源配置，把选择权和主动权都交给你。</p></div>
+      <div class="start-grid">
+        <article class="start-card reveal"><div class="start-card-top"><span>01</span><div class="feature-icon small"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></div></div><h3>获取社区版</h3><p>前往 GitHub Releases 下载最新安装包。社区版适用于 Android 7.0 及以上设备。</p><a class="inline-link" href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile/releases" target="_blank" rel="noreferrer">前往下载<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a></article>
+        <article class="start-card reveal"><div class="start-card-top"><span>02</span><div class="feature-icon small"><svg class="icon" aria-hidden="true"><use href="#i-plugin"/></svg></div></div><h3>配置你的音源</h3><p>按自己的需求配置音乐插件。应用不内置曲库，也不直接提供版权音乐内容。</p><a class="inline-link" href="#faq-title">了解音源说明<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></article>
+        <article class="start-card reveal"><div class="start-card-top"><span>03</span><div class="feature-icon small"><svg class="icon" aria-hidden="true"><use href="#i-music"/></svg></div></div><h3>找到你的节奏</h3><p>收藏歌单、调整声音、转动屏幕，让界面与播放方式跟随你的使用习惯。</p><a class="inline-link" href="#experience">回顾双形态设计<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></article>
+      </div>
+      <div class="start-note reveal"><div class="start-note-icon"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></div><p><strong>开放，从第一天开始。</strong><span>你可以阅读源码、反馈问题，或带着自己的想法参与共建。</span></p><a class="button button-dark" href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile" target="_blank" rel="noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>查看社区仓库</a></div>
+    </section>
+
+    <section class="faq section-shell" aria-labelledby="faq-title">
+      <div class="section-heading reveal"><span class="section-kicker">A FEW ANSWERS</span><h2 id="faq-title">开始之前。</h2></div>
+      <div class="faq-list reveal">
+        <details><summary>音乐内容从哪里来？<span></span></summary><p>SuchMusic 是播放工具与插件框架，不存储、不直接提供版权音乐内容。音源来自你自行配置的插件与公开接口，请遵守当地法律法规并支持正版音乐。</p></details>
+        <details><summary>支持哪些设备？<span></span></summary><p>社区版面向 Android 7.0 及以上设备。官网仅展示社区版移动端体验，不提供应用内功能的在线试用。</p></details>
+        <details><summary>AI 歌词翻译可以直接使用吗？<span></span></summary><p>自行构建的开源版本需要配置受支持的 AI 服务密钥后使用；我们发布的安装包已预先完成配置，下载安装后即可直接使用，无需再次配置。其他播放与歌词功能不受 AI 配置影响。</p></details>
+        <details><summary>如何参与社区共建？<span></span></summary><p>你可以通过 GitHub 阅读源码、提交问题或贡献代码。衍生与分发请遵循 AGPL-3.0，并保留原项目及社区版的版权信息。</p></details>
+      </div>
+    </section>
+
+    <section class="download-section" id="download" aria-labelledby="download-title">
+      <div class="download-orb" aria-hidden="true"></div>
+      <div class="download-inner section-shell reveal"><img class="download-logo" src="./assets/logo.png" alt="SuchMusic" width="92" height="92" loading="lazy"><span class="section-kicker light">YOUR MUSIC. YOUR WAY.</span><h2 id="download-title">下一段旋律，<br>由你开启。</h2><p>下载 SuchMusic 社区版，让音乐以更自在的方式发生。</p><a class="button button-light" href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile/releases" target="_blank" rel="noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>前往 Releases 下载<svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a><span class="download-requirement">适用于 Android 7.0 及以上 · 音源需自行配置</span></div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <div class="footer-top"><a class="brand" href="#overview"><img src="./assets/logo.png" alt="" width="32" height="32" loading="lazy"><span>SuchMusic</span><span class="brand-badge">社区版</span></a><div class="footer-links"><a href="#experience">沉浸体验</a><a href="#features">功能设计</a><a href="#open-source">开放社区</a><a href="#qq-group">QQ 交流群</a><a href="https://github.com/LJT-YTWH/SuchMusic-NG-Mobile" target="_blank" rel="noreferrer">GitHub</a></div></div>
+    <div class="footer-bottom"><p>社区衍生作品，遵循 AGPL-3.0。原项目与版权声明请见仓库。</p><p>产品截图来自社区版，其余图形为官网视觉设计。</p><span>为每一份热爱而创作。</span></div>
+  </footer>
+
+  <button class="back-to-top icon-button" type="button" aria-label="返回页面顶部" data-back-to-top><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg></button>
+</body>
+</html>
