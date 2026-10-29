@@ -910,6 +910,12 @@ p, h1, h2, h3 { margin: 0; }
   .cover-dots button { width: 28px; }
 }
 
+@media (max-width:960px) {
+  .hero-copy, .hero h1, .cover-heading, .cover-heading h2 { margin-inline: auto; text-align: center; }
+  .hero h1 span { display: block; width: fit-content; margin-inline: auto; padding-right: 0; }
+  .cover-heading h2 { white-space: normal; }
+}
+
 @media (max-height:780px) and (min-width:961px) {
   .hero-layout { min-height: 760px; padding: 92px 0 24px; gap: 20px; }
   .hero h1 { font-size: 64px; }
