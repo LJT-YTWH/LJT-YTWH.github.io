@@ -774,6 +774,7 @@ p, h1, h2, h3 { margin: 0; }
 .search-art-cover { fill: #d9eaff; }
 .search-art-cover.secondary { fill: #e5e2f7; }
 .search-art-note { fill: none; stroke: var(--mp-primary); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.search-art-note-head { fill: var(--mp-primary); }
 .search-art-title { fill: var(--mp-text); font-size: 10px; font-weight: 650; }
 .search-art-meta { fill: var(--mp-text-3); font-size: 8px; }
 @media (hover:hover) {
