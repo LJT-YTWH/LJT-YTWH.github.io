@@ -747,21 +747,17 @@ p, h1, h2, h3 { margin: 0; }
 .audio-detail { grid-column: 3 / span 2; grid-row: 1; background: linear-gradient(150deg,#fff,#f5f9ff); }
 .translate-detail { grid-column: 5 / span 2; grid-row: 1; }
 .export-detail { grid-column: 3 / span 2; grid-row: 2; }
-.fluid-detail { grid-column: 5 / span 2; grid-row: 2; border-color: rgba(255,255,255,.07); background: #10131b; color: white; }
+.search-detail { grid-column: 5 / span 2; grid-row: 2; background: linear-gradient(150deg,#fff,#f5f9ff); }
 .detail-card h3 { font-size: 26px; font-weight: 750; line-height: 1.25; letter-spacing: -.045em; }
 .lyric-detail h3 { font-size: 38px; }
 .detail-card > p { margin-top: 12px; color: var(--mp-text-2); font-size: 14px; line-height: 1.75; }
 .lyric-detail > p { max-width: 340px; font-size: 15px; }
-.fluid-detail > p { color: rgba(235,235,245,.55); }
-.fluid-detail .feature-icon { background: rgba(98,175,255,.13); color: #75b8ff; }
 .detail-art { width: 100%; min-width: 0; margin-top: auto; padding-top: 20px; transition: transform .35s var(--ease-out); }
 .detail-art > svg { display: block; width: 100%; height: auto; }
 .lyric-detail .lyric-art { width: calc(100% + 16px); margin: auto -8px; padding-top: 0; }
 .lyric-detail .lyric-art-wave { stroke: url(#detail-lyric-gradient); }
 .audio-detail .equalizer { height: 112px; margin: auto 0 0; padding: 20px 6px 0; }
 .export-detail .export-stack { margin: auto 0 0; padding-top: 20px; }
-.fluid-detail .performance-visual { height: 112px; margin: auto 0 0; padding-top: 12px; }
-.fluid-detail .speed-ring { transition: transform .35s var(--ease-out); }
 .translate-art-bg { fill: #f4f5fa; }
 .translate-art-chip { fill: white; }
 .translate-art-chip.target { fill: var(--mp-primary-soft); }
@@ -770,21 +766,30 @@ p, h1, h2, h3 { margin: 0; }
 .translate-art-original { fill: var(--mp-text-2); font-family: var(--font-sans); font-size: 16px; font-weight: 550; }
 .translate-art-target { fill: var(--mp-primary-deep); font-family: var(--font-sans); font-size: 18px; font-weight: 700; letter-spacing: -.03em; }
 .translate-art-arrow { fill: none; stroke: #b5b9c5; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.search-art-bg { fill: #f1f5fa; }
+.search-art-bar { fill: white; }
+.search-art-icon { fill: none; stroke: var(--mp-primary); stroke-width: 1.7; stroke-linecap: round; }
+.search-art-placeholder, .search-art-title, .search-art-meta { font-family: var(--font-sans); }
+.search-art-placeholder { fill: var(--mp-text-3); font-size: 11px; }
+.search-art-cover { fill: #d9eaff; }
+.search-art-cover.secondary { fill: #e5e2f7; }
+.search-art-note { fill: none; stroke: var(--mp-primary); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.search-art-title { fill: var(--mp-text); font-size: 10px; font-weight: 650; }
+.search-art-meta { fill: var(--mp-text-3); font-size: 8px; }
 @media (hover:hover) {
   .detail-card:hover { border-color: rgba(44,142,253,.14); box-shadow: var(--mp-shadow-md); }
   .detail-card:hover .detail-art { transform: translateY(-4px); }
   .audio-detail:hover .equalizer i:nth-child(odd) { transform: scaleY(1.12); }
   .audio-detail:hover .equalizer i:nth-child(even) { transform: scaleY(.9); }
-  .fluid-detail:hover .speed-ring { transform: rotate(8deg) scale(1.03); }
 }
 @media (max-width:1050px) and (min-width:801px) {
   .detail-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: auto; }
   .lyric-detail { grid-column: 1 / -1; grid-row: auto; min-height: 500px; }
-  .audio-detail, .translate-detail, .export-detail, .fluid-detail { grid-column: auto; grid-row: auto; }
+  .audio-detail, .translate-detail, .export-detail, .search-detail { grid-column: auto; grid-row: auto; }
 }
 @media (max-width:800px) {
   .detail-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .lyric-detail, .audio-detail, .translate-detail, .export-detail, .fluid-detail { grid-column: 1; grid-row: auto; }
+  .lyric-detail, .audio-detail, .translate-detail, .export-detail, .search-detail { grid-column: 1; grid-row: auto; }
 }
 @keyframes detail-dash { to { stroke-dashoffset: -140; } }
 
